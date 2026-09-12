@@ -121,3 +121,23 @@ if (counters.length) {
     window.location.replace(targets[wanted] + window.location.hash);
   }
 })();
+
+// ---------- Formulaire : ouverture de WhatsApp avec le message prérempli ----------
+document.querySelectorAll('.contact-form[data-whatsapp]').forEach((form) => {
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const data = new FormData(form);
+    const fields = {
+      name: String(data.get('name') || '').trim(),
+      phone: String(data.get('phone') || '').trim(),
+      pack: String(data.get('pack') || '').trim(),
+      message: String(data.get('message') || '').trim(),
+    };
+    const text = (form.dataset.template || '{name} {phone} {pack} {message}')
+      .replace(/\{(\w+)\}/g, (_, key) => fields[key] || '')
+      .replace(/\s+/g, ' ')
+      .trim();
+    const url = `https://wa.me/${form.dataset.whatsapp}?text=${encodeURIComponent(text)}`;
+    window.open(url, '_blank', 'noopener');
+  });
+});

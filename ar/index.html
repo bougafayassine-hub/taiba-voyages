@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Amiri:wght@700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../styles.css?v=7" />
+  <link rel="stylesheet" href="../styles.css?v=8" />
 </head>
 <body>
   <header class="site-header">
@@ -106,6 +106,17 @@
           ومتابعة إنسانية لعيش عمرة هادئة ومنظّمة بإتقان.
         </p>
 
+        <div class="hero-actions">
+          <a class="ghost-cta" href="tel:+212661629384">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+            <span class="ghost-label">اتصل بنا</span>
+            <span class="ghost-number">06 61 62 93 84</span>
+          </a>
+          <a class="ghost-cta" href="#localisation">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s-6-5.3-6-11a6 6 0 0 1 12 0c0 5.7-6 11-6 11Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.3" stroke="currentColor" stroke-width="1.8"/></svg>
+            <span class="ghost-label">زورونا</span>
+          </a>
+        </div>
       </div>
 
       <div class="stats-bar" role="list" aria-label="أرقام طيبة للأسفار">
@@ -149,8 +160,63 @@
         </div>
       </div>
     </section>
+
+    <section id="localisation" class="location" aria-labelledby="location-title">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow eyebrow-dark"><span></span><b>موقعنا</b><span></span></div>
+          <h2 id="location-title">تعالوا لزيارتنا في فاس</h2>
+          <p>وكالتنا في استقبالكم لتحضير عمرتكم أو حجكم. راسلونا أو مروا علينا، ونجيبكم بسرعة.</p>
+        </div>
+
+        <div class="location-grid">
+          <div class="location-card map-card">
+            <div class="map-frame">
+              <iframe title="خريطة وكالة طيبة للأسفار في فاس" src="https://www.google.com/maps?q=Taiba+Voyages+by+Kettani,+F%C3%A8s&hl=ar&z=16&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+            </div>
+            <ul class="location-info">
+              <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s-6-5.3-6-11a6 6 0 0 1 12 0c0 5.7-6 11-6 11Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.3" stroke="currentColor" stroke-width="1.8"/></svg><span>8، شارع أحمد الشبيهي، إقامة النّاسي، المحل 3 — فاس</span></li>
+              <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><a href="tel:+212661629384" dir="ltr">06 61 62 93 84</a></li>
+              <li><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.2 8.2 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23-1.48 0-2.93-.39-4.19-1.15l-.3-.17-3.12.82.83-3.04-.2-.32a8.2 8.2 0 0 1-1.26-4.38c.01-4.54 3.7-8.24 8.25-8.24M8.53 7.33c-.16 0-.43.06-.66.31-.22.25-.87.86-.87 2.07 0 1.22.89 2.39 1 2.56.14.17 1.76 2.67 4.25 3.73.59.27 1.05.42 1.41.53.59.19 1.13.16 1.56.1.48-.07 1.46-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.07-.1-.23-.16-.48-.27-.25-.14-1.47-.74-1.69-.82-.23-.08-.37-.12-.56.12-.16.25-.64.81-.78.97-.15.17-.29.19-.53.07-.26-.13-1.06-.39-2-1.23-.74-.66-1.23-1.47-1.38-1.72-.12-.24-.01-.39.11-.5.11-.11.27-.29.37-.44.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.11-.56-1.35-.77-1.84-.2-.48-.4-.42-.56-.43-.14 0-.3-.01-.47-.01"/></svg><a href="https://wa.me/212661629384" target="_blank" rel="noopener">راسلونا عبر واتساب</a></li>
+            </ul>
+            <a class="directions" href="https://www.google.com/maps/dir/?api=1&destination=Taiba+Voyages+by+Kettani+F%C3%A8s" target="_blank" rel="noopener">الاتجاهات</a>
+          </div>
+
+          <form class="location-card contact-form" data-whatsapp="212661629384" data-template="السلام عليكم طيبة للأسفار، أنا {name} ({phone}). أرغب في معلومات حول: {pack}. {message}">
+            <h3>اطلبوا عرض سعر</h3>
+            <label>
+              <span>الاسم الكامل</span>
+              <input name="name" type="text" autocomplete="name" placeholder="اسمكم" required />
+            </label>
+            <label>
+              <span>الهاتف</span>
+              <input name="phone" type="tel" autocomplete="tel" placeholder="06 00 00 00 00" dir="ltr" required />
+            </label>
+            <label>
+              <span>العرض المطلوب</span>
+              <select name="pack">
+              <option value="عمرة">عمرة</option>
+              <option value="حج">حج</option>
+              <option value="سفر مخصص">سفر مخصص</option>
+              </select>
+            </label>
+            <label>
+              <span>الرسالة</span>
+              <textarea name="message" rows="4" placeholder="التواريخ المرغوبة، عدد الأشخاص…"></textarea>
+            </label>
+            <button class="form-submit" type="submit">
+              <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.2 8.2 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23-1.48 0-2.93-.39-4.19-1.15l-.3-.17-3.12.82.83-3.04-.2-.32a8.2 8.2 0 0 1-1.26-4.38c.01-4.54 3.7-8.24 8.25-8.24M8.53 7.33c-.16 0-.43.06-.66.31-.22.25-.87.86-.87 2.07 0 1.22.89 2.39 1 2.56.14.17 1.76 2.67 4.25 3.73.59.27 1.05.42 1.41.53.59.19 1.13.16 1.56.1.48-.07 1.46-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.07-.1-.23-.16-.48-.27-.25-.14-1.47-.74-1.69-.82-.23-.08-.37-.12-.56.12-.16.25-.64.81-.78.97-.15.17-.29.19-.53.07-.26-.13-1.06-.39-2-1.23-.74-.66-1.23-1.47-1.38-1.72-.12-.24-.01-.39.11-.5.11-.11.27-.29.37-.44.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.11-.56-1.35-.77-1.84-.2-.48-.4-.42-.56-.43-.14 0-.3-.01-.47-.01"/></svg>
+              <span>إرسال عبر واتساب</span>
+            </button>
+            <p class="form-note">يُفتح طلبكم في واتساب جاهزًا للإرسال.</p>
+          </form>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <script src="../script.js?v=7"></script>
+  <footer class="site-footer">© 2026 طيبة للأسفار · فاس، المغرب</footer>
+
+  <script src="../script.js?v=8"></script>
 </body>
 </html>
