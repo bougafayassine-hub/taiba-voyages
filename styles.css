@@ -206,7 +206,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
   position: absolute;
   z-index: 2;
   top: 22px;
-  inset-inline-end: max(40px, calc((100vw - 1240px) / 2));
+  right: max(40px, calc((100vw - 1240px) / 2));
   height: 38px;
   padding: 0 14px 0 9px;
   border-radius: 999px;
@@ -401,7 +401,7 @@ h1 .line-gold {
   .desktop-nav a { font-size: 13.5px; }
   .contact-cta { height: 36px; padding: 0 14px 0 11px; font-size: 13px; }
   .whatsapp-icon { width: 17px; height: 17px; }
-  .google-badge { inset-inline-end: 24px; }
+  .google-badge { right: 24px; }
   .hero-content { padding-top: 135px; }
   h1 { font-size: clamp(52px, 5.5vw, 70px); }
 }
@@ -462,7 +462,7 @@ h1 .line-gold {
   }
   .google-badge {
     top: 14px;
-    inset-inline-end: 14px;
+    right: 14px;
     height: 34px;
     padding: 0 12px 0 8px;
     font-size: 12px;
@@ -471,6 +471,8 @@ h1 .line-gold {
   .google-badge .stars { display: none; }
   .google-badge .google-sep { display: none; }
   .google-count::before { content: "· "; }
+  html[dir="rtl"] .google-count::before { content: none; }
+  html[dir="rtl"] .google-count::after { content: " ·"; }
   .hero-content {
     width: calc(100% - 36px);
     padding-top: 156px;
@@ -524,6 +526,26 @@ h1 .line-gold {
 /* ---------- Version arabe (RTL) ---------- */
 html[dir="rtl"] body {
   font-family: "Tajawal", "Segoe UI", Tahoma, Arial, sans-serif;
+}
+
+/* Structure fixe : la navbar, le badge Google et la barre de chiffres gardent
+   leur disposition française ; seuls les textes changent de langue. */
+html[dir="rtl"] .site-header,
+html[dir="rtl"] .google-badge,
+html[dir="rtl"] .stats-bar {
+  direction: ltr;
+}
+html[dir="rtl"] .mobile-panel a { text-align: right; }
+html[dir="rtl"] .stat-text { direction: rtl; text-align: left; }
+html[dir="rtl"] .stat-text span,
+html[dir="rtl"] .google-count { direction: rtl; unicode-bidi: isolate; }
+
+/* Chiffres, note Google et nom latin : toujours de gauche à droite. */
+.counter,
+.google-score,
+.eyebrow b {
+  direction: ltr;
+  unicode-bidi: isolate;
 }
 html[dir="rtl"] .desktop-nav a,
 html[dir="rtl"] .contact-cta,

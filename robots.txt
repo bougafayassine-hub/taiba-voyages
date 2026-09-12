@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://bougafayassine-hub.github.io/taiba-voyages/sitemap.xml
