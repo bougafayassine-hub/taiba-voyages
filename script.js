@@ -70,7 +70,7 @@ if (counters.length) {
         animateCounter(entry.target);
         observer.unobserve(entry.target);
       });
-    }, { threshold: 0.4 });
+    }, { threshold: 0.15 });
     counters.forEach((el) => {
       renderCounter(el, 0);
       observer.observe(el);
