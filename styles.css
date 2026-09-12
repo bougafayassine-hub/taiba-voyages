@@ -165,7 +165,12 @@ button, a { -webkit-tap-highlight-color: transparent; }
   object-fit: cover;
   object-position: center 50%;
   display: block;
+  transform: scale(1);
+  transition: transform 40s linear;
 }
+
+/* Dernière image : dérive très lente pour que le plan reste vivant. */
+.hero-video.is-frozen { transform: scale(1.06); }
 
 /* Darkening close to the reference: enough contrast without flattening the photo. */
 .hero-overlay {
@@ -490,5 +495,6 @@ h1 .line-gold {
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
+  .hero-video.is-frozen { transform: none; }
   *, *::before, *::after { transition: none !important; }
 }

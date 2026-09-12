@@ -16,14 +16,37 @@ if (toggle && panel) {
   });
 }
 
-// Vidéo de fond : relance systématique (secours si l'attribut loop est ignoré).
+// Vidéo de fond : lecture unique, ralenti progressif sur la fin puis arrêt
+// en douceur sur la dernière image (pas de replay brusque).
 const heroVideo = document.querySelector('.hero-video');
 if (heroVideo) {
-  heroVideo.addEventListener('ended', () => {
-    heroVideo.currentTime = 0;
-    heroVideo.play();
+  const SLOW_WINDOW = 1.6; // secondes avant la fin où le ralenti commence
+  const MIN_RATE = 0.15;   // vitesse minimale juste avant l'arrêt
+  let rafId = null;
+
+  const easeRate = () => {
+    const remaining = heroVideo.duration - heroVideo.currentTime;
+    if (Number.isFinite(remaining) && remaining <= SLOW_WINDOW) {
+      const t = Math.max(remaining / SLOW_WINDOW, 0); // 1 → 0
+      heroVideo.playbackRate = MIN_RATE + (1 - MIN_RATE) * t * t;
+    }
+    if (!heroVideo.paused && !heroVideo.ended) rafId = requestAnimationFrame(easeRate);
+  };
+
+  heroVideo.addEventListener('play', () => {
+    cancelAnimationFrame(rafId);
+    rafId = requestAnimationFrame(easeRate);
   });
-  const tryPlay = () => heroVideo.play().catch(() => {});
+
+  heroVideo.addEventListener('ended', () => {
+    cancelAnimationFrame(rafId);
+    heroVideo.classList.add('is-frozen');
+  });
+
+  const tryPlay = () => {
+    if (heroVideo.ended) return;
+    heroVideo.play().catch(() => {});
+  };
   tryPlay();
   document.addEventListener('visibilitychange', () => {
     if (!document.hidden) tryPlay();
