@@ -1063,8 +1063,7 @@ html[dir="rtl"] .agency-actions .contact-cta { padding: 0 18px 0 22px; }
   html[dir="rtl"] .float-gen { left: 6px; }
 }
 
-/* ---------- Propositions de boutons hero (activées par classe) ---------- */
-/* A — Or & verre : appel en or brossé, visite en verre plus lumineux, pulsation douce de l'icône. */
+/* ---------- Boutons du hero : appel en or brossé, visite en verre, vibration douce de l'icône ---------- */
 .hero-actions.v-gold .ghost-cta:first-child {
   color: #1d1706;
   background: linear-gradient(180deg, #f0c552 0%, #d9a11f 100%);
@@ -1085,32 +1084,6 @@ html[dir="rtl"] .agency-actions .contact-cta { padding: 0 18px 0 22px; }
   90% { transform: rotate(0); }
 }
 
-/* B — Ivoire : deux boutons pleins ivoire, texte vert, icône or, reflet lent. */
-.hero-actions.v-ivory .ghost-cta {
-  position: relative;
-  overflow: hidden;
-  color: var(--green);
-  background: #fffdf8;
-  border-color: rgba(255,255,255,.95);
-  box-shadow: 0 10px 24px rgba(0,0,0,.22);
-}
-.hero-actions.v-ivory .ghost-cta svg { color: #c99a1d; }
-.hero-actions.v-ivory .ghost-cta::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: -60%;
-  width: 40%;
-  background: linear-gradient(100deg, transparent 0%, rgba(224,179,62,.28) 50%, transparent 100%);
-  transform: skewX(-18deg);
-  animation: shine 5s ease-in-out infinite;
-}
-@keyframes shine {
-  0%, 60% { left: -60%; }
-  80%, 100% { left: 130%; }
-}
 @media (prefers-reduced-motion: reduce) {
-  .hero-actions.v-gold .ghost-cta:first-child svg,
-  .hero-actions.v-ivory .ghost-cta::after { animation: none; }
+  .hero-actions.v-gold .ghost-cta:first-child svg { animation: none; }
 }
