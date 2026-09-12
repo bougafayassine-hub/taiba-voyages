@@ -83,30 +83,52 @@ button, a { -webkit-tap-highlight-color: transparent; }
 }
 
 .lang-switch {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px;
+  border-radius: 999px;
+  background: #f1ece0;
+  gap: 2px;
+}
+
+.lang-btn {
   appearance: none;
   border: 0;
   background: transparent;
-  padding: 6px 0;
+  height: 30px;
+  padding: 0 10px 0 7px;
+  border-radius: 999px;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  color: #10161a;
+  gap: 7px;
+  color: #4a5257;
   font: inherit;
-  font-size: 14px;
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: .02em;
   cursor: pointer;
+  transition: background .18s ease, color .18s ease, box-shadow .18s ease;
+}
+.lang-btn:hover { color: #10161a; }
+.lang-btn.is-active {
+  color: #10161a;
+  background: #fffefa;
+  box-shadow: 0 1px 4px rgba(0,0,0,.10);
 }
 
-.flag-fr {
+.flag {
   display: inline-flex;
-  width: 29px;
-  height: 18px;
+  width: 20px;
+  height: 14px;
+  border-radius: 2px;
   overflow: hidden;
-  box-shadow: inset 0 0 0 1px rgba(0,0,0,.04);
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,.06);
 }
 .flag-fr i { flex: 1; }
 .flag-fr i:nth-child(1) { background: #173ebf; }
 .flag-fr i:nth-child(2) { background: #fff; }
 .flag-fr i:nth-child(3) { background: #ec2332; }
+.flag-ma svg { width: 100%; height: 100%; display: block; }
 
 .nav-divider {
   width: 1px;
@@ -184,7 +206,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
   position: absolute;
   z-index: 2;
   top: 22px;
-  right: max(40px, calc((100vw - 1240px) / 2));
+  inset-inline-end: max(40px, calc((100vw - 1240px) / 2));
   height: 38px;
   padding: 0 14px 0 9px;
   border-radius: 999px;
@@ -379,7 +401,7 @@ h1 .line-gold {
   .desktop-nav a { font-size: 13.5px; }
   .contact-cta { height: 36px; padding: 0 14px 0 11px; font-size: 13px; }
   .whatsapp-icon { width: 17px; height: 17px; }
-  .google-badge { right: 24px; }
+  .google-badge { inset-inline-end: 24px; }
   .hero-content { padding-top: 135px; }
   h1 { font-size: clamp(52px, 5.5vw, 70px); }
 }
@@ -394,8 +416,7 @@ h1 .line-gold {
   .brand img { width: 118px; }
   .desktop-nav, .nav-divider, .nav-actions > .contact-cta { display: none; }
   .nav-actions { gap: 13px; }
-  .lang-switch { font-size: 14px; }
-  .flag-fr { width: 25px; height: 16px; }
+  .lang-btn { height: 28px; padding: 0 8px 0 6px; font-size: 12px; }
   .menu-toggle {
     display: inline-flex;
     width: 46px;
@@ -441,7 +462,7 @@ h1 .line-gold {
   }
   .google-badge {
     top: 14px;
-    right: 14px;
+    inset-inline-end: 14px;
     height: 34px;
     padding: 0 12px 0 8px;
     font-size: 12px;
@@ -485,7 +506,8 @@ h1 .line-gold {
 
 @media (max-width: 560px) {
   .brand img { width: 108px; }
-  .lang-switch { display: none; }
+  .lang-label { display: none; }
+  .lang-btn { padding: 0 7px; gap: 0; }
   .hero { min-height: 690px; }
   .hero-content { padding-top: 134px; }
   h1 { font-size: clamp(40px, 12.3vw, 54px); }
@@ -497,4 +519,48 @@ h1 .line-gold {
   html { scroll-behavior: auto; }
   .hero-video.is-frozen { transform: none; }
   *, *::before, *::after { transition: none !important; }
+}
+
+/* ---------- Version arabe (RTL) ---------- */
+html[dir="rtl"] body {
+  font-family: "Tajawal", "Segoe UI", Tahoma, Arial, sans-serif;
+}
+html[dir="rtl"] .desktop-nav a,
+html[dir="rtl"] .contact-cta,
+html[dir="rtl"] .mobile-panel a,
+html[dir="rtl"] .google-badge,
+html[dir="rtl"] .stat-text,
+html[dir="rtl"] .hero-lead {
+  letter-spacing: 0;
+}
+html[dir="rtl"] .desktop-nav a { font-size: 15.5px; font-weight: 500; }
+html[dir="rtl"] .contact-cta { font-size: 14.5px; padding: 0 13px 0 16px; }
+html[dir="rtl"] .eyebrow {
+  letter-spacing: .04em;
+  font-size: 15px;
+  font-weight: 700;
+}
+html[dir="rtl"] h1 {
+  font-family: "Amiri", "Scheherazade New", "Times New Roman", serif;
+  font-size: clamp(50px, 4.2vw, 70px);
+  line-height: 1.22;
+  letter-spacing: 0;
+  font-weight: 700;
+}
+html[dir="rtl"] h1 .line-gold { margin-top: 0; }
+html[dir="rtl"] .hero-lead {
+  font-size: 18.5px;
+  line-height: 1.75;
+  max-width: 720px;
+}
+html[dir="rtl"] .stat-text strong { font-size: 19px; }
+html[dir="rtl"] .stat-text span { font-size: 15.5px; margin-top: 4px; }
+html[dir="rtl"] .google-count { font-size: 13.5px; }
+html[dir="rtl"] .lang-btn { letter-spacing: 0; }
+
+@media (max-width: 900px) {
+  html[dir="rtl"] h1 { font-size: clamp(38px, 10.5vw, 56px); line-height: 1.25; }
+  html[dir="rtl"] .hero-lead { font-size: 16.5px; line-height: 1.7; }
+  html[dir="rtl"] .stat-text strong { font-size: 15px; }
+  html[dir="rtl"] .stat-text span { font-size: 12px; }
 }

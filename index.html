@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Agence de voyage à Fès spécialisée en Omra & Hajj | TAIBA Voyages</title>
+  <title data-i18n="meta.title">Agence de voyage à Fès spécialisée en Omra & Hajj | TAIBA Voyages</title>
   <meta name="description" content="TAIBA Voyages, agence de voyage à Fès spécialisée dans l'Omra et le Hajj. Découvrez nos formules et notre accompagnement." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Amiri:wght@700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=5" />
 </head>
 <body>
   <header class="site-header">
@@ -18,19 +18,27 @@
       </a>
 
       <nav class="desktop-nav" aria-label="Navigation principale">
-        <a href="#agence">Notre agence</a>
-        <a href="#packs">Nos packs</a>
-        <a href="#localisation">Notre localisation</a>
+        <a href="#agence" data-i18n="nav.agency">Notre agence</a>
+        <a href="#packs" data-i18n="nav.packs">Nos packs</a>
+        <a href="#localisation" data-i18n="nav.location">Notre localisation</a>
       </nav>
 
       <div class="nav-actions">
-        <button class="lang-switch" type="button" aria-label="Choisir la langue">
-          <span class="flag-fr" aria-hidden="true"><i></i><i></i><i></i></span>
-          <span>FR</span>
-          <svg width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden="true">
-            <path d="M1.5 1.5 6 6l4.5-4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
+        <div class="lang-switch" role="group" aria-label="Langue / اللغة">
+          <button class="lang-btn is-active" type="button" data-lang="fr" lang="fr" aria-pressed="true" title="Français">
+            <span class="flag flag-fr" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="lang-label">FR</span>
+          </button>
+          <button class="lang-btn" type="button" data-lang="ar" lang="ar" aria-pressed="false" title="العربية">
+            <span class="flag flag-ma" aria-hidden="true">
+              <svg viewBox="0 0 900 600">
+                <rect width="900" height="600" fill="#C1272D"/>
+                <path d="M450 130 549.9 437.5 288.3 247.5h323.4L350.1 437.5Z" fill="none" stroke="#006233" stroke-width="40" stroke-linejoin="miter"/>
+              </svg>
+            </span>
+            <span class="lang-label">AR</span>
+          </button>
+        </div>
 
         <span class="nav-divider" aria-hidden="true"></span>
 
@@ -38,7 +46,7 @@
           <svg class="whatsapp-icon" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
             <path fill="currentColor" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.2 8.2 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23-1.48 0-2.93-.39-4.19-1.15l-.3-.17-3.12.82.83-3.04-.2-.32a8.2 8.2 0 0 1-1.26-4.38c.01-4.54 3.7-8.24 8.25-8.24M8.53 7.33c-.16 0-.43.06-.66.31-.22.25-.87.86-.87 2.07 0 1.22.89 2.39 1 2.56.14.17 1.76 2.67 4.25 3.73.59.27 1.05.42 1.41.53.59.19 1.13.16 1.56.1.48-.07 1.46-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.07-.1-.23-.16-.48-.27-.25-.14-1.47-.74-1.69-.82-.23-.08-.37-.12-.56.12-.16.25-.64.81-.78.97-.15.17-.29.19-.53.07-.26-.13-1.06-.39-2-1.23-.74-.66-1.23-1.47-1.38-1.72-.12-.24-.01-.39.11-.5.11-.11.27-.29.37-.44.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.11-.56-1.35-.77-1.84-.2-.48-.4-.42-.56-.43-.14 0-.3-.01-.47-.01"/>
           </svg>
-          <span>Nous contacter</span>
+          <span data-i18n="nav.contact">Nous contacter</span>
         </a>
 
         <button class="menu-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false">
@@ -48,10 +56,10 @@
     </div>
 
     <div class="mobile-panel" hidden>
-      <a href="#agence">Notre agence</a>
-      <a href="#packs">Nos packs</a>
-      <a href="#localisation">Notre localisation</a>
-      <a class="mobile-whatsapp" href="https://wa.me/212661629384" target="_blank" rel="noopener">Nous contacter sur WhatsApp</a>
+      <a href="#agence" data-i18n="nav.agency">Notre agence</a>
+      <a href="#packs" data-i18n="nav.packs">Nos packs</a>
+      <a href="#localisation" data-i18n="nav.location">Notre localisation</a>
+      <a class="mobile-whatsapp" href="https://wa.me/212661629384" target="_blank" rel="noopener" data-i18n="nav.whatsappLong">Nous contacter sur WhatsApp</a>
     </div>
   </header>
 
@@ -76,18 +84,18 @@
         <span class="google-score">4,6</span>
         <span class="stars" aria-hidden="true"><i></i><i></i><i></i><i></i><i class="half"></i></span>
         <span class="google-sep" aria-hidden="true"></span>
-        <span class="google-count">+ 200 avis vérifiés</span>
+        <span class="google-count" data-i18n="badge.count">+ 200 avis vérifiés</span>
       </a>
 
       <div class="hero-content">
-        <div class="eyebrow"><span></span><b>TAIBA VOYAGES · FÈS</b><span></span></div>
+        <div class="eyebrow"><span></span><b data-i18n="hero.eyebrow">TAIBA VOYAGES · FÈS</b><span></span></div>
 
         <h1 id="hero-title">
-          <span class="line-white">Agence de voyage à Fès</span>
-          <span class="line-gold">spécialisée en Omra &amp; Hajj</span>
+          <span class="line-white" data-i18n="hero.title1">Agence de voyage à Fès</span>
+          <span class="line-gold" data-i18n="hero.title2">spécialisée en Omra &amp; Hajj</span>
         </h1>
 
-        <p class="hero-lead">
+        <p class="hero-lead" data-i18n-html="hero.lead">
           Depuis Fès, nous accompagnons les pèlerins avec des formules fiables,<br class="desktop-break" />
           un encadrement sérieux et un suivi humain pour vivre une Omra sereine<br class="desktop-break" />
           et bien organisée.
@@ -106,7 +114,7 @@
               <path d="M1 52c0-8 5-14 13-15 3 3 4 8 4 14v4H1v-3Zm62 0c0-8-5-14-13-15-3 3-4 8-4 14v4h17v-3Z" fill="currentColor" opacity=".92"/>
             </svg>
           </div>
-          <div class="stat-text"><strong class="counter" data-count="20" data-prefix="+ " data-suffix=" ans">+ 20 ans</strong><span>d’expérience</span></div>
+          <div class="stat-text"><strong class="counter" data-count="20" data-prefix="+ " data-suffix=" ans" data-i18n-suffix="stats.yearsSuffix">+ 20 ans</strong><span data-i18n="stats.years">d’expérience</span></div>
         </div>
 
         <div class="stat-separator" aria-hidden="true"></div>
@@ -121,7 +129,7 @@
               <path d="M28 55V43c0-4 2-7 4-7s4 3 4 7v12h-8Z" fill="#FBF8F0"/>
             </svg>
           </div>
-          <div class="stat-text"><strong class="counter" data-count="2000" data-prefix="+">+2000</strong><span>pèlerins</span></div>
+          <div class="stat-text"><strong class="counter" data-count="2000" data-prefix="+">+2000</strong><span data-i18n="stats.pilgrims">pèlerins</span></div>
         </div>
 
         <div class="stat-separator" aria-hidden="true"></div>
@@ -132,12 +140,12 @@
               <path d="m32 6 7.3 15 16.5 2.4-12 11.7 2.8 16.4L32 43.8 17.4 51.5l2.8-16.4-12-11.7L24.7 21 32 6Z" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/>
             </svg>
           </div>
-          <div class="stat-text"><strong class="counter" data-count="98" data-suffix="%">98%</strong><span>de satisfaction</span></div>
+          <div class="stat-text"><strong class="counter" data-count="98" data-suffix="%">98%</strong><span data-i18n="stats.satisfaction">de satisfaction</span></div>
         </div>
       </div>
     </section>
   </main>
 
-  <script src="script.js"></script>
+  <script src="script.js?v=5"></script>
 </body>
 </html>
