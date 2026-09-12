@@ -453,8 +453,12 @@ h1 .line-gold {
     justify-content: space-between;
   }
   .brand img { width: 118px; }
-  .desktop-nav, .nav-divider, .nav-actions > .contact-cta { display: none; }
-  .nav-actions { gap: 13px; }
+  .desktop-nav, .nav-divider { display: none; }
+  .nav-actions { gap: 10px; }
+  /* WhatsApp en pastille ronde, icône seule */
+  .nav-actions > .contact-cta { width: 40px; height: 40px; padding: 0; border-radius: 50%; }
+  .nav-actions > .contact-cta span { display: none; }
+  .nav-actions > .contact-cta .whatsapp-icon { width: 21px; height: 21px; }
   .lang-btn { height: 28px; padding: 0 8px 0 6px; font-size: 12px; }
   .menu-toggle {
     display: inline-flex;
@@ -546,7 +550,7 @@ h1 .line-gold {
 @media (max-width: 560px) {
   .brand img { width: 108px; }
   .lang-label { display: none; }
-  .lang-btn { padding: 0 7px; gap: 0; }
+  .lang-btn { padding: 0 6px; gap: 0; }
   .hero { min-height: 690px; }
   .hero-content { padding-top: 134px; }
   h1 { font-size: clamp(40px, 12.3vw, 54px); }
