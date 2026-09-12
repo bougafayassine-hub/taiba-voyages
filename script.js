@@ -16,47 +16,15 @@ if (toggle && panel) {
   });
 }
 
-// Vidéo de fond : lecture unique, ralenti progressif sur la fin puis arrêt
-// en douceur sur la dernière image (pas de replay brusque).
+// Vidéo de fond : lecture unique à vitesse normale, puis arrêt sur la
+// dernière image. Elle repart du début à chaque chargement de la page.
 const heroVideo = document.querySelector('.hero-video');
 if (heroVideo) {
-  const SLOW_WINDOW = 1.6; // secondes avant la fin où le ralenti commence
-  const MIN_RATE = 0.15;   // vitesse minimale juste avant l'arrêt
-  let rafId = null;
-  let frozen = false;
-
   heroVideo.loop = false;
   heroVideo.removeAttribute('loop');
 
-  const freeze = () => {
-    if (frozen) return;
-    frozen = true;
-    cancelAnimationFrame(rafId);
-    heroVideo.pause();
-    heroVideo.classList.add('is-frozen');
-  };
-
-  const easeRate = () => {
-    const remaining = heroVideo.duration - heroVideo.currentTime;
-    if (Number.isFinite(remaining)) {
-      if (remaining <= 0.08) { freeze(); return; }
-      if (remaining <= SLOW_WINDOW) {
-        const t = Math.max(remaining / SLOW_WINDOW, 0); // 1 → 0
-        heroVideo.playbackRate = MIN_RATE + (1 - MIN_RATE) * t * t;
-      }
-    }
-    if (!heroVideo.paused && !heroVideo.ended) rafId = requestAnimationFrame(easeRate);
-  };
-
-  heroVideo.addEventListener('play', () => {
-    cancelAnimationFrame(rafId);
-    rafId = requestAnimationFrame(easeRate);
-  });
-
-  heroVideo.addEventListener('ended', freeze);
-
   const tryPlay = () => {
-    if (frozen || heroVideo.ended) return;
+    if (heroVideo.ended) return;
     heroVideo.play().catch(() => {});
   };
   tryPlay();
