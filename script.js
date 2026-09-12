@@ -15,3 +15,17 @@ if (toggle && panel) {
     });
   });
 }
+
+// Vidéo de fond : relance systématique (secours si l'attribut loop est ignoré).
+const heroVideo = document.querySelector('.hero-video');
+if (heroVideo) {
+  heroVideo.addEventListener('ended', () => {
+    heroVideo.currentTime = 0;
+    heroVideo.play();
+  });
+  const tryPlay = () => heroVideo.play().catch(() => {});
+  tryPlay();
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) tryPlay();
+  });
+}

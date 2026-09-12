@@ -18,10 +18,9 @@
       </a>
 
       <nav class="desktop-nav" aria-label="Navigation principale">
-        <a href="#packs">Nos packs</a>
-        <a href="#voyage-personnalise">Voyage personnalisé</a>
         <a href="#agence">Notre agence</a>
-        <a href="#contact">Contact</a>
+        <a href="#packs">Nos packs</a>
+        <a href="#localisation">Notre localisation</a>
       </nav>
 
       <div class="nav-actions">
@@ -35,11 +34,11 @@
 
         <span class="nav-divider" aria-hidden="true"></span>
 
-        <a class="contact-cta" href="#contact">
-          <span>Nous contacter</span>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M5 12h14M14 7l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        <a class="contact-cta" href="https://wa.me/212661629384" target="_blank" rel="noopener" aria-label="Nous contacter sur WhatsApp">
+          <svg class="whatsapp-icon" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+            <path fill="currentColor" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.2 8.2 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23-1.48 0-2.93-.39-4.19-1.15l-.3-.17-3.12.82.83-3.04-.2-.32a8.2 8.2 0 0 1-1.26-4.38c.01-4.54 3.7-8.24 8.25-8.24M8.53 7.33c-.16 0-.43.06-.66.31-.22.25-.87.86-.87 2.07 0 1.22.89 2.39 1 2.56.14.17 1.76 2.67 4.25 3.73.59.27 1.05.42 1.41.53.59.19 1.13.16 1.56.1.48-.07 1.46-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.07-.1-.23-.16-.48-.27-.25-.14-1.47-.74-1.69-.82-.23-.08-.37-.12-.56.12-.16.25-.64.81-.78.97-.15.17-.29.19-.53.07-.26-.13-1.06-.39-2-1.23-.74-.66-1.23-1.47-1.38-1.72-.12-.24-.01-.39.11-.5.11-.11.27-.29.37-.44.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.11-.56-1.35-.77-1.84-.2-.48-.4-.42-.56-.43-.14 0-.3-.01-.47-.01"/>
           </svg>
+          <span>Nous contacter</span>
         </a>
 
         <button class="menu-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false">
@@ -49,28 +48,39 @@
     </div>
 
     <div class="mobile-panel" hidden>
-      <a href="#packs">Nos packs</a>
-      <a href="#voyage-personnalise">Voyage personnalisé</a>
       <a href="#agence">Notre agence</a>
-      <a href="#contact">Contact</a>
+      <a href="#packs">Nos packs</a>
+      <a href="#localisation">Notre localisation</a>
+      <a class="mobile-whatsapp" href="https://wa.me/212661629384" target="_blank" rel="noopener">Nous contacter sur WhatsApp</a>
     </div>
   </header>
 
   <main>
     <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-media" aria-hidden="true"></div>
+      <div class="hero-media" aria-hidden="true">
+        <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="assets/hero-placeholder.jpg">
+          <source src="assets/hero-video.mp4" type="video/mp4" />
+        </video>
+      </div>
       <div class="hero-overlay" aria-hidden="true"></div>
 
-      <div class="trust-badge" aria-label="4,9 sur 5 — Plus de 2 000 pèlerins nous font confiance">
-        <span class="trust-icon" aria-hidden="true">
-          <svg viewBox="0 0 40 44" fill="none">
-            <path d="M20 1 36 7v12c0 10.5-6.1 19-16 24C10.1 38 4 29.5 4 19V7L20 1Z" fill="currentColor"/>
-            <path d="m13.8 21.6 4.1 4.2 8.7-10" stroke="#0B4D3B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      <div class="trust-badge google-badge" aria-label="Avis Google : 4,6 sur 5, plus de 200 avis vérifiés">
+        <span class="google-logo" aria-hidden="true">
+          <svg viewBox="0 0 48 48">
+            <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+            <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+            <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+            <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
           </svg>
         </span>
         <span class="trust-copy">
-          <strong>4,9/5 · Plus de 2 000 pèlerins</strong>
-          <small>nous font confiance</small>
+          <span class="google-rating">
+            <strong>4,6</strong>
+            <span class="stars" aria-hidden="true">
+              <i></i><i></i><i></i><i></i><i class="half"></i>
+            </span>
+          </span>
+          <small>+ 200 avis vérifiés sur Google</small>
         </span>
       </div>
 
