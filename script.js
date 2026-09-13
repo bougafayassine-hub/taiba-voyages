@@ -147,3 +147,78 @@ document.querySelectorAll('.contact-form[data-whatsapp]').forEach((form) => {
     window.open(url, '_blank', 'noopener');
   });
 });
+
+// ---------- Cartes de chiffres sur mobile : points de navigation et défilement doux ----------
+(() => {
+  const bar = document.querySelector('.stats-bar');
+  const hero = document.querySelector('.hero');
+  if (!bar || !hero) return;
+  const cards = [...bar.querySelectorAll('.stat')];
+  const mobile = window.matchMedia('(max-width: 900px)');
+  let dots = null;
+  let timer = null;
+  let pausedUntil = 0;
+
+  // Carte la plus proche du centre du conteneur (valable en LTR comme en RTL).
+  const index = () => {
+    const mid = bar.getBoundingClientRect().left + bar.clientWidth / 2;
+    let best = 0, dist = Infinity;
+    cards.forEach((c, k) => {
+      const r = c.getBoundingClientRect();
+      const d = Math.abs(r.left + r.width / 2 - mid);
+      if (d < dist) { dist = d; best = k; }
+    });
+    return best;
+  };
+  const goTo = (i) => {
+    const card = cards[(i + cards.length) % cards.length];
+    const r = card.getBoundingClientRect();
+    const mid = bar.getBoundingClientRect().left + bar.clientWidth / 2;
+    bar.scrollBy({ left: r.left + r.width / 2 - mid, behavior: 'smooth' });
+  };
+  const paint = () => {
+    if (!dots) return;
+    const i = index();
+    dots.querySelectorAll('button').forEach((b, k) => b.classList.toggle('is-active', k === i));
+  };
+  const place = () => {
+    if (!dots) return;
+    dots.style.top = `calc(100% + ${Math.round(bar.offsetHeight / 2) + 12}px)`;
+  };
+
+  const start = () => {
+    if (dots) return;
+    dots = document.createElement('div');
+    dots.className = 'stats-dots';
+    dots.setAttribute('aria-hidden', 'true');
+    cards.forEach((_, i) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.addEventListener('click', () => { pausedUntil = Date.now() + 9000; goTo(i); });
+      dots.appendChild(b);
+    });
+    hero.appendChild(dots);
+    place(); paint();
+    bar.addEventListener('scroll', paint, { passive: true });
+    bar.addEventListener('touchstart', () => { pausedUntil = Date.now() + 9000; }, { passive: true });
+    window.addEventListener('resize', place);
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!reduce) {
+      timer = setInterval(() => {
+        if (Date.now() < pausedUntil || document.hidden) return;
+        goTo(index() + 1);
+      }, 4500);
+    }
+  };
+  const stop = () => {
+    if (!dots) return;
+    dots.remove(); dots = null;
+    clearInterval(timer); timer = null;
+    bar.removeEventListener('scroll', paint);
+    window.removeEventListener('resize', place);
+  };
+
+  const sync = () => (mobile.matches ? start() : stop());
+  sync();
+  mobile.addEventListener('change', sync);
+})();
