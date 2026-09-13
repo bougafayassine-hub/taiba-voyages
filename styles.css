@@ -212,9 +212,13 @@ button, a { -webkit-tap-highlight-color: transparent; }
           backdrop-filter: blur(8px);
   border: 1px solid rgba(255,255,255,.7);
   box-shadow: 0 6px 18px rgba(0,0,0,.14);
-  transition: background .18s ease, transform .18s ease;
+  cursor: default;
+  -webkit-tap-highlight-color: transparent;
 }
-.google-badge { cursor: default; }
+.google-badge:hover, .google-badge:active, .google-badge:focus { transform: none; background: rgba(255,255,255,.9); }
+@media (max-width: 900px) {
+  .google-badge, .google-badge:hover, .google-badge:active, .google-badge:focus { transform: translateX(-50%); }
+}
 
 .google-logo {
   width: 22px;
@@ -1863,13 +1867,20 @@ html.js .pledge.is-highlight,
   /* Lignes centrées, icône discrète en haut à droite */
   .v-mix .stat {
     position: relative;
+    max-width: none;
+    width: 100%;
     padding: 16px 56px 16px 56px;
-    justify-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: baseline;
+    column-gap: 8px;
+    row-gap: 4px;
     text-align: center;
   }
-  .v-mix .stat .counter { justify-self: end; }
-  .v-mix .stat-title { justify-self: start; }
-  .v-mix .stat-text { max-width: 30ch; margin-inline: auto; }
+  .v-mix .stat .counter { flex: 0 0 auto; }
+  .v-mix .stat-title { flex: 0 0 auto; max-width: 100%; }
+  .v-mix .stat-text { flex: 0 0 100%; max-width: 30ch; margin: 0 auto; }
   html[dir="rtl"] .v-mix .stat-text { max-width: 36ch; }
   .v-mix .stat-icon {
     display: block;
