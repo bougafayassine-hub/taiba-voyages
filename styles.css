@@ -196,7 +196,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 
 .google-badge {
   position: absolute;
-  z-index: 2;
+  z-index: 4;
   top: 22px;
   right: max(40px, calc((100vw - 1240px) / 2));
   height: 38px;
@@ -1131,7 +1131,7 @@ html[dir="rtl"] .agency-actions .contact-cta { padding: 0 18px 0 22px; }
 /* ---------- Badge « Facilités de paiement » dans le hero ---------- */
 .pay-badge {
   position: absolute;
-  z-index: 2;
+  z-index: 4;
   top: 22px;
   left: max(40px, calc((100vw - 1240px) / 2));
   display: inline-flex;
