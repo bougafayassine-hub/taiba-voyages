@@ -214,7 +214,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
   box-shadow: 0 6px 18px rgba(0,0,0,.14);
   transition: background .18s ease, transform .18s ease;
 }
-.google-badge:hover { background: #fff; transform: translateY(-1px); }
+.google-badge { cursor: default; }
 
 .google-logo {
   width: 22px;
@@ -1853,18 +1853,27 @@ html.js .pledge.is-highlight,
   html.js .v-mix .stat:nth-child(even) { transform: translateX(110px); }
   html.js .v-mix .stat.is-in { opacity: 1; transform: none; }
 
-  /* Icône discrète à droite de chaque ligne */
-  .v-mix .stat { position: relative; padding-inline-end: 64px; }
+  /* Lignes centrées, icône discrète en haut à droite */
+  .v-mix .stat {
+    position: relative;
+    padding: 16px 56px 16px 56px;
+    justify-items: center;
+    text-align: center;
+  }
+  .v-mix .stat .counter { justify-self: end; }
+  .v-mix .stat-title { justify-self: start; }
+  .v-mix .stat-text { max-width: 30ch; margin-inline: auto; }
+  html[dir="rtl"] .v-mix .stat-text { max-width: 36ch; }
   .v-mix .stat-icon {
     display: block;
     position: absolute;
-    top: 50%;
-    inset-inline-end: 14px;
-    width: 40px;
-    height: 40px;
-    transform: translateY(-50%);
+    top: 12px;
+    inset-inline-end: 10px;
+    width: 34px;
+    height: 34px;
+    transform: none;
     color: var(--gold-light);
-    opacity: .28;
+    opacity: .3;
   }
 }
 @media (prefers-reduced-motion: reduce) {
