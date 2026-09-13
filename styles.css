@@ -1077,48 +1077,39 @@ html[dir="rtl"] .agency-actions .contact-cta { padding: 0 18px 0 22px; }
   .hero-actions.v-gold .ghost-cta:first-child svg { animation: none; }
 }
 
-/* ---------- Badge « Facilités de paiement » dans le hero (propositions) ---------- */
+/* ---------- Badge « Facilités de paiement » dans le hero ---------- */
 .pay-badge {
+  position: absolute;
+  z-index: 2;
+  top: 22px;
+  left: max(40px, calc((100vw - 1240px) / 2));
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  height: 36px;
+  height: 38px;
   padding: 0 14px 0 10px;
   border-radius: 999px;
   font-size: 13px;
   font-weight: 600;
   white-space: nowrap;
-}
-.pay-badge svg { flex: 0 0 auto; }
-
-/* P1 — sous le badge Google, en haut à droite, ton or */
-.hero.pay-p1 .pay-badge {
-  position: absolute;
-  z-index: 2;
-  top: 68px;
-  right: max(40px, calc((100vw - 1240px) / 2));
   color: #2a2107;
   background: linear-gradient(180deg, #f3d270 0%, #e0b33e 100%);
   border: 1px solid rgba(255,240,190,.9);
   box-shadow: 0 6px 18px rgba(0,0,0,.16);
 }
-.hero.pay-p1 .pay-badge svg { color: #4a3a0a; }
+.pay-badge svg { flex: 0 0 auto; color: #4a3a0a; }
 
-/* P2 — sous les boutons, ligne discrète en verre */
-.hero.pay-p2 .pay-badge {
-  margin-top: 14px;
-  height: 32px;
-  color: #fff;
-  background: rgba(0,0,0,.28);
-  border: 1px solid rgba(255,255,255,.35);
-  -webkit-backdrop-filter: blur(6px);
-          backdrop-filter: blur(6px);
+@media (max-width: 1200px) {
+  .pay-badge { left: 24px; }
 }
-.hero.pay-p2 .pay-badge svg { color: var(--gold-light); }
-.hero:not(.pay-p1) .pay-badge.pos-top { display: none; }
-.hero:not(.pay-p2) .pay-badge.pos-inline { display: none; }
-
 @media (max-width: 900px) {
-  .hero.pay-p1 .pay-badge { top: 56px; right: auto; left: 50%; transform: translateX(-50%); height: 32px; font-size: 12px; }
-  .hero.pay-p1 .hero-content { padding-top: 118px; }
+  .pay-badge {
+    top: 56px;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 32px;
+    font-size: 12px;
+    padding: 0 12px 0 9px;
+  }
+  .hero-content { padding-top: 118px; }
 }
