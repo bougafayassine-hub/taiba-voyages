@@ -1331,8 +1331,8 @@ html[dir="rtl"] .founder-quote p::after { content: " «"; }
 /* Apparition carte par carte à l'entrée dans l'écran (uniquement si JS actif) */
 html.js .pledge {
   opacity: 0;
-  transform: translateY(26px);
-  transition: opacity .6s ease, transform .6s ease, box-shadow .35s ease, --draw .7s ease-out;
+  transform: translateY(30px);
+  transition: opacity 1s ease, transform 1s cubic-bezier(.2,.7,.2,1), box-shadow .35s ease, --draw .7s ease-out;
 }
 html.js .pledge.is-in { opacity: 1; transform: none; }
 html.js .pledge.is-done { transition: transform .35s ease, box-shadow .35s ease, --draw .7s ease-out; }

@@ -254,15 +254,15 @@ document.querySelectorAll('.pay-card').forEach((card) => {
   const show = (card) => {
     if (card.classList.contains('is-in')) return;
     const now = performance.now();
-    if (now - batchStart > 500) { batchStart = now; batchCount = 0; }
-    const delay = batchCount * 160;
+    if (now - batchStart > 800) { batchStart = now; batchCount = 0; }
+    const delay = batchCount * 320;
     batchCount += 1;
     card.style.transitionDelay = `${delay}ms`;
     card.classList.add('is-in');
     setTimeout(() => {
       card.style.transitionDelay = '';
       card.classList.add('is-done');
-    }, 700 + delay);
+    }, 1100 + delay);
   };
 
   const inView = (card) => {
