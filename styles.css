@@ -242,7 +242,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
   -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z'/%3E%3C/svg%3E") center / contain no-repeat;
           mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z'/%3E%3C/svg%3E") center / contain no-repeat;
 }
-.stars i.half { background: linear-gradient(90deg, #fbbc05 0 50%, #dadce0 50% 100%); }
+.stars i.half { background: linear-gradient(90deg, #fbbc05 0 60%, #dadce0 60% 100%); }
 
 .google-sep {
   width: 1px;
@@ -1560,9 +1560,6 @@ html[dir="rtl"] .pledges-media { background-image: linear-gradient(180deg, rgba(
   color: #3f4b48;
 }
 
-/* ---------- Barre d'appel fixe (mobile) ---------- */
-.mobile-bar { display: none; }
-
 /* ---------- Réglages arabes ---------- */
 html[dir="rtl"] .pledge h3,
 html[dir="rtl"] .pack-tier,
@@ -1597,33 +1594,6 @@ html[dir="rtl"] .pay-split strong { unicode-bidi: isolate; }
   .faq-item summary { padding: 16px 18px; font-size: 16px; }
   .faq-item p { padding: 0 18px 18px; font-size: 15px; }
 
-  .mobile-bar {
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 40;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
-    background: rgba(255,254,250,.96);
-    border-top: 1px solid rgba(0,0,0,.06);
-    box-shadow: 0 -8px 24px rgba(0,0,0,.08);
-  }
-  .mobile-bar a {
-    height: 46px;
-    border-radius: 999px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    font-size: 15px;
-    font-weight: 700;
-  }
-  .mobile-bar-call { color: #2a2107; background: linear-gradient(180deg, #f0c552 0%, #d9a11f 100%); }
-  .mobile-bar-wa { color: #fff; background: linear-gradient(180deg, #2fd46b 0%, #1fb757 100%); }
-  body { padding-bottom: 72px; }
 }
 @media (max-width: 560px) {
   .pledge-grid, .pack-grid { grid-template-columns: 1fr; }
