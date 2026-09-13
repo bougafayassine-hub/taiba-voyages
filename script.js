@@ -169,18 +169,18 @@ document.querySelectorAll('.contact-form[data-whatsapp]').forEach((form) => {
     if (row.classList.contains('is-in')) return;
     const now = performance.now();
     if (now - batchStart > 800) { batchStart = now; batchCount = 0; }
-    row.style.transitionDelay = `${batchCount * 350}ms`;
+    row.style.transitionDelay = `${batchCount * 450}ms`;
     batchCount += 1;
     row.classList.add('is-in');
   };
   if (!mobile.matches || !('IntersectionObserver' in window)) { rows.forEach(show); return; }
   const io = new IntersectionObserver((entries) => {
     entries.forEach((e) => { if (e.isIntersecting) { show(e.target); io.unobserve(e.target); } });
-  }, { threshold: 0.35 });
+  }, { threshold: 0.7 });
   rows.forEach((r) => io.observe(r));
   const check = () => rows.forEach((r) => {
     const b = r.getBoundingClientRect();
-    if (b.top < window.innerHeight * 0.9 && b.bottom > 0) show(r);
+    if (b.top < window.innerHeight * 0.72 && b.bottom > 0) show(r);
   });
   window.addEventListener('scroll', check, { passive: true });
   check();
@@ -311,25 +311,25 @@ document.querySelectorAll('.pay-card').forEach((card) => {
     if (card.classList.contains('is-in')) return;
     const now = performance.now();
     if (now - batchStart > 800) { batchStart = now; batchCount = 0; }
-    const delay = batchCount * 320;
+    const delay = batchCount * 400;
     batchCount += 1;
     card.style.transitionDelay = `${delay}ms`;
     card.classList.add('is-in');
     setTimeout(() => {
       card.style.transitionDelay = '';
       card.classList.add('is-done');
-    }, 1100 + delay);
+    }, 1500 + delay);
   };
 
   const inView = (card) => {
     const r = card.getBoundingClientRect();
-    return r.top < window.innerHeight * 0.9 && r.bottom > 0;
+    return r.top < window.innerHeight * 0.72 && r.bottom > 0;
   };
 
   if (!('IntersectionObserver' in window)) { cards.forEach(show); return; }
   const io = new IntersectionObserver((entries) => {
     entries.forEach((e) => { if (e.isIntersecting) { show(e.target); io.unobserve(e.target); } });
-  }, { threshold: 0.2 });
+  }, { threshold: 0.6 });
   cards.forEach((c) => io.observe(c));
 
   // Secours si l'observateur ne se déclenche pas.
