@@ -342,15 +342,18 @@ document.querySelectorAll('.pay-card').forEach((card) => {
     link.addEventListener('click', (event) => {
       const target = document.querySelector(link.dataset.highlight);
       if (!target) return;
-      // Sur téléphone : on cale le titre juste sous l'en-tête pour que la carte soit visible.
-      if (window.matchMedia('(max-width: 900px)').matches) {
-        const title = document.getElementById('pledges-title');
-        const navH = document.querySelector('.site-header')?.offsetHeight || 0;
-        if (title) {
-          event.preventDefault();
-          const top = title.getBoundingClientRect().top + window.scrollY - navH - 6;
-          window.scrollTo({ top, behavior: 'smooth' });
-        }
+      // Téléphone : le titre juste sous l'en-tête pour que la carte soit visible.
+      // Ordinateur : l'accroche « Nos engagements » à 40 px sous l'en-tête.
+      const mobile = window.matchMedia('(max-width: 900px)').matches;
+      const anchor = mobile
+        ? document.getElementById('pledges-title')
+        : document.querySelector('.pledges-copy .eyebrow');
+      const navH = document.querySelector('.site-header')?.offsetHeight || 0;
+      if (anchor) {
+        event.preventDefault();
+        const top = anchor.getBoundingClientRect().top + window.scrollY - navH - (mobile ? 6 : 40);
+        window.scrollTo({ top, behavior: 'smooth' });
+        if (history.replaceState) history.replaceState(null, '', '#engagements');
       }
       setTimeout(() => cards.forEach(show), 600);
       setTimeout(() => {
