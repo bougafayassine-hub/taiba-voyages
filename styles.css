@@ -1136,19 +1136,24 @@ html[dir="rtl"] .agency-actions .contact-cta { padding: 0 18px 0 22px; }
   left: max(40px, calc((100vw - 1240px) / 2));
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  height: 38px;
-  padding: 0 14px 0 10px;
+  gap: 9px;
+  height: 44px;
+  padding: 0 18px 0 13px;
   border-radius: 999px;
-  font-size: 13px;
-  font-weight: 600;
+  font-size: 14.5px;
+  font-weight: 700;
   white-space: nowrap;
   color: #2a2107;
-  background: linear-gradient(180deg, #f3d270 0%, #e0b33e 100%);
-  border: 1px solid rgba(255,240,190,.9);
-  box-shadow: 0 6px 18px rgba(0,0,0,.16);
+  background: linear-gradient(180deg, #f6d66c 0%, #e0b33e 100%);
+  border: 1px solid rgba(255,244,200,.95);
+  box-shadow: 0 8px 22px rgba(0,0,0,.22), 0 0 0 4px rgba(224,179,62,.22);
+  animation: badge-glow 4.5s ease-in-out infinite;
 }
-.pay-badge svg { flex: 0 0 auto; color: #4a3a0a; }
+.pay-badge svg { flex: 0 0 auto; width: 18px; height: 18px; color: #4a3a0a; }
+@keyframes badge-glow {
+  0%, 60%, 100% { box-shadow: 0 8px 22px rgba(0,0,0,.22), 0 0 0 4px rgba(224,179,62,.22); }
+  78% { box-shadow: 0 8px 22px rgba(0,0,0,.22), 0 0 0 9px rgba(224,179,62,.10); }
+}
 
 @media (max-width: 1200px) {
   .pay-badge { left: 24px; }
@@ -1158,10 +1163,12 @@ html[dir="rtl"] .agency-actions .contact-cta { padding: 0 18px 0 22px; }
     top: 56px;
     left: 50%;
     transform: translateX(-50%);
-    height: 32px;
-    font-size: 12px;
-    padding: 0 12px 0 9px;
+    height: 38px;
+    font-size: 13.5px;
+    padding: 0 15px 0 11px;
   }
+  /* Sur téléphone, la carte Paiement en 3 fois passe en premier */
+  #pledge-pay { order: -1; }
 }
 
 /* ---------- Animations des cartes de chiffres (propositions) ---------- */
@@ -1747,7 +1754,7 @@ a.pay-badge svg { animation: badge-nudge 4.5s ease-in-out infinite; }
   80% { transform: translateY(0); }
 }
 @media (prefers-reduced-motion: reduce) {
-  a.pay-badge::after, a.pay-badge svg { animation: none; }
+  a.pay-badge, a.pay-badge::after, a.pay-badge svg { animation: none; }
 }
 a.pay-badge:hover { transform: translateY(-1px); filter: brightness(1.04); }
 @media (max-width: 900px) { a.pay-badge:hover { transform: translateX(-50%) translateY(-1px); } }
@@ -1797,7 +1804,8 @@ html.js .pledge.is-highlight,
   gap: 0;
 }
 .v-mix .stat {
-  padding: 4px 30px;
+  padding: 4px 28px;
+  max-width: 320px;
   border-radius: 0;
   background: transparent;
   border: 0;
@@ -1807,6 +1815,7 @@ html.js .pledge.is-highlight,
 .v-mix .stat-icon { display: none; }
 .v-mix .stat:first-child { border-inline-start: 0; padding-inline-start: 0; }
 .v-mix .stat:last-child { padding-inline-end: 0; }
+.v-mix .stats-bar { grid-template-columns: repeat(4, minmax(0, 1fr)); justify-items: stretch; }
 .v-mix .stat .counter { color: var(--green); font-size: 38px; }
 .v-mix .stat-title { color: var(--green); }
 .v-mix + .agency { padding-top: 40px; }

@@ -339,14 +339,24 @@ document.querySelectorAll('.pay-card').forEach((card) => {
 
   // Clic sur « Facilités de paiement » : aller à la section et surligner la carte paiement.
   document.querySelectorAll('[data-highlight]').forEach((link) => {
-    link.addEventListener('click', () => {
+    link.addEventListener('click', (event) => {
       const target = document.querySelector(link.dataset.highlight);
       if (!target) return;
-      setTimeout(() => cards.forEach(show), 500);
+      // Sur téléphone : on cale le titre juste sous l'en-tête pour que la carte soit visible.
+      if (window.matchMedia('(max-width: 900px)').matches) {
+        const title = document.getElementById('pledges-title');
+        const navH = document.querySelector('.site-header')?.offsetHeight || 0;
+        if (title) {
+          event.preventDefault();
+          const top = title.getBoundingClientRect().top + window.scrollY - navH - 6;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+      }
+      setTimeout(() => cards.forEach(show), 600);
       setTimeout(() => {
         target.classList.add('is-highlight');
-        setTimeout(() => target.classList.remove('is-highlight'), 3200);
-      }, 2300);
+        setTimeout(() => target.classList.remove('is-highlight'), 3400);
+      }, 2600);
     });
   });
 })();
