@@ -609,6 +609,7 @@ html[dir="rtl"] .google-badge,
 html[dir="rtl"] .stats-bar {
   direction: ltr;
 }
+html[dir="rtl"] .desktop-nav { direction: rtl; }
 html[dir="rtl"] .mobile-panel a { text-align: right; }
 html[dir="rtl"] .stats-bar { direction: rtl; }
 html[dir="rtl"] .stat .counter { text-align: right; }
