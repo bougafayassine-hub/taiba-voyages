@@ -230,12 +230,14 @@ document.querySelectorAll('.pay-card').forEach((card) => {
   const select = card.querySelector('.pay-select');
   const total = card.querySelector('.pay-total .num');
   const each = card.querySelector('.pay-each .num');
+  const steps = card.querySelectorAll('.pay-step .num');
   if (!select || !total || !each) return;
   const fmt = (n) => new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 0 }).format(n).replace(/[\u202f\u00a0]/g, ' ');
   const update = () => {
     const price = Number(select.value) || 0;
     total.textContent = fmt(price);
     each.textContent = fmt(Math.round(price / 3));
+    steps.forEach((el) => { el.textContent = fmt(Math.round(price / 3)); });
   };
   select.addEventListener('change', update);
   update();
@@ -250,8 +252,17 @@ document.querySelectorAll('.pay-card').forEach((card) => {
     setTimeout(() => grid.classList.add('is-done'), 1300);
   };
   if (!('IntersectionObserver' in window)) { reveal(); return; }
+  let done = false;
+  const once = () => { if (done) return; done = true; reveal(); io.disconnect(); window.removeEventListener('scroll', check); };
   const io = new IntersectionObserver((entries) => {
-    if (entries.some((e) => e.isIntersecting)) { reveal(); io.disconnect(); }
-  }, { threshold: 0.25 });
+    if (entries.some((e) => e.isIntersecting)) once();
+  }, { threshold: 0.15 });
   io.observe(grid);
+  // Secours : si la grille est déjà dans l'écran (ou presque), on l'affiche.
+  const check = () => {
+    const r = grid.getBoundingClientRect();
+    if (r.top < window.innerHeight * 0.95 && r.bottom > 0) once();
+  };
+  window.addEventListener('scroll', check, { passive: true });
+  check();
 })();
