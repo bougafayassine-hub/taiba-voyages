@@ -243,26 +243,41 @@ document.querySelectorAll('.pay-card').forEach((card) => {
   update();
 });
 
-// ---------- Engagements : apparition en cascade à l'arrivée sur la section ----------
+// ---------- Engagements : chaque carte apparaît quand elle entre dans l'écran,
+// en cascade si plusieurs arrivent ensemble (desktop), une à une au défilement (mobile) ----------
 (() => {
-  const grid = document.querySelector('.pledge-grid');
-  if (!grid) return;
-  const reveal = () => {
-    grid.classList.add('is-in');
-    setTimeout(() => grid.classList.add('is-done'), 1300);
+  const cards = [...document.querySelectorAll('.pledge-grid .pledge')];
+  if (!cards.length) return;
+  let batchStart = 0;
+  let batchCount = 0;
+
+  const show = (card) => {
+    if (card.classList.contains('is-in')) return;
+    const now = performance.now();
+    if (now - batchStart > 500) { batchStart = now; batchCount = 0; }
+    const delay = batchCount * 160;
+    batchCount += 1;
+    card.style.transitionDelay = `${delay}ms`;
+    card.classList.add('is-in');
+    setTimeout(() => {
+      card.style.transitionDelay = '';
+      card.classList.add('is-done');
+    }, 700 + delay);
   };
-  if (!('IntersectionObserver' in window)) { reveal(); return; }
-  let done = false;
-  const once = () => { if (done) return; done = true; reveal(); io.disconnect(); window.removeEventListener('scroll', check); };
+
+  const inView = (card) => {
+    const r = card.getBoundingClientRect();
+    return r.top < window.innerHeight * 0.9 && r.bottom > 0;
+  };
+
+  if (!('IntersectionObserver' in window)) { cards.forEach(show); return; }
   const io = new IntersectionObserver((entries) => {
-    if (entries.some((e) => e.isIntersecting)) once();
-  }, { threshold: 0.15 });
-  io.observe(grid);
-  // Secours : si la grille est déjà dans l'écran (ou presque), on l'affiche.
-  const check = () => {
-    const r = grid.getBoundingClientRect();
-    if (r.top < window.innerHeight * 0.95 && r.bottom > 0) once();
-  };
+    entries.forEach((e) => { if (e.isIntersecting) { show(e.target); io.unobserve(e.target); } });
+  }, { threshold: 0.2 });
+  cards.forEach((c) => io.observe(c));
+
+  // Secours si l'observateur ne se déclenche pas.
+  const check = () => cards.forEach((c) => { if (inView(c)) show(c); });
   window.addEventListener('scroll', check, { passive: true });
   check();
 })();

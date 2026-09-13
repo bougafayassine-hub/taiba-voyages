@@ -1328,18 +1328,15 @@ html[dir="rtl"] .founder-quote p::after { content: " «"; }
   color: #4d5552;
 }
 
-/* Apparition en cascade à l'arrivée sur la section (uniquement si JS actif) */
+/* Apparition carte par carte à l'entrée dans l'écran (uniquement si JS actif) */
 html.js .pledge {
   opacity: 0;
   transform: translateY(26px);
   transition: opacity .6s ease, transform .6s ease, box-shadow .35s ease, --draw .7s ease-out;
 }
-html.js .pledge:nth-child(2) { transition-delay: .15s; }
-html.js .pledge:nth-child(3) { transition-delay: .3s; }
-html.js .pledge:nth-child(4) { transition-delay: .45s; }
-html.js .pledge-grid.is-in .pledge { opacity: 1; transform: none; }
-html.js .pledge-grid.is-done .pledge { transition: transform .35s ease, box-shadow .35s ease, --draw .7s ease-out; transition-delay: 0s; }
-html.js .pledge-grid.is-done .pledge:hover { transform: translateY(-6px); }
+html.js .pledge.is-in { opacity: 1; transform: none; }
+html.js .pledge.is-done { transition: transform .35s ease, box-shadow .35s ease, --draw .7s ease-out; }
+html.js .pledge.is-done:hover { transform: translateY(-6px); }
 @media (prefers-reduced-motion: reduce) {
   html.js .pledge { opacity: 1; transform: none; transition: none; }
   .pledge:hover { transform: none; }
