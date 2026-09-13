@@ -392,9 +392,12 @@ h1 .line-gold {
   border: 1px solid rgba(255,255,255,.7);
   box-shadow: 0 14px 34px rgba(0,0,0,.14);
   color: #1b1a17;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: baseline;
+  column-gap: 8px;
 }
+.stat .stat-text { grid-column: 1 / -1; }
 .stat .counter {
   font-size: 34px;
   line-height: 1;
@@ -413,7 +416,10 @@ h1 .line-gold {
   color: #1f2b28;
 }
 .stat-title {
-  margin-top: 8px;
+  margin-top: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   font-size: 14.5px;
   font-weight: 600;
   color: #1f2b28;
@@ -1761,3 +1767,103 @@ html.js .pledge.is-highlight,
 }
 @keyframes caret-blink { 50% { opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .typewriter .caret { display: none; } }
+
+/* ---------- Présentations alternatives de la preuve sociale (activées par classe sur .stats-anchor) ---------- */
+/* A — Ruban : une seule bande sable, quatre colonnes séparées par des filets */
+.v-ribbon .stats-bar {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0;
+  padding: 20px 8px;
+  border-radius: 22px;
+  background: #f7e8c8;
+  border: 1px solid rgba(255,255,255,.7);
+  box-shadow: 0 14px 34px rgba(0,0,0,.14);
+}
+.v-ribbon .stat {
+  padding: 4px 24px;
+  border-radius: 0;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  border-inline-start: 1px solid rgba(7,75,57,.16);
+}
+.v-ribbon .stat:first-child { border-inline-start: 0; }
+
+/* B — Bande sur la vidéo : verre fumé à l'intérieur du hero, chiffres or, texte blanc */
+.v-glass .stats-bar {
+  transform: translate(-50%, calc(-100% - 22px));
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0;
+  padding: 18px 8px;
+  border-radius: 20px;
+  background: rgba(6,20,17,.42);
+  border: 1px solid rgba(255,255,255,.22);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  box-shadow: 0 14px 34px rgba(0,0,0,.18);
+}
+.v-glass .stat {
+  padding: 2px 22px;
+  border-radius: 0;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  border-inline-start: 1px solid rgba(255,255,255,.18);
+}
+.v-glass .stat:first-child { border-inline-start: 0; }
+.v-glass .stat .counter { color: var(--gold-light); }
+.v-glass .stat-title { color: #fff; }
+.v-glass .stat-text { color: rgba(255,255,255,.8); }
+.v-glass + .agency { padding-top: 56px; }
+
+/* C — Ligne de chiffres : sans fond, sous le hero, chiffres verts, séparateurs or */
+.v-plain { height: auto; padding: 34px 0 6px; background: var(--ivory); }
+.v-plain .stats-bar {
+  position: static;
+  transform: none;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0;
+}
+.v-plain .stat {
+  padding: 4px 26px;
+  border-radius: 0;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  border-inline-start: 1px solid rgba(224,179,62,.55);
+}
+.v-plain .stat:first-child { border-inline-start: 0; }
+.v-plain .stat .counter { color: var(--green); font-size: 38px; }
+.v-plain .stat-title { color: var(--green); }
+.v-plain + .agency { padding-top: 40px; }
+
+@media (max-width: 900px) {
+  /* Sur mobile, les trois variantes deviennent une liste dans une bande, sans carrousel */
+  .v-ribbon .stats-bar, .v-glass .stats-bar, .v-plain .stats-bar {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    width: calc(100% - 28px);
+    margin: 0 auto;
+    padding: 6px 0;
+    overflow: visible;
+    transform: none;
+  }
+  .v-ribbon .stat, .v-glass .stat, .v-plain .stat {
+    flex: none;
+    padding: 12px 18px;
+    border-inline-start: 0;
+    border-top: 1px solid rgba(7,75,57,.14);
+  }
+  .v-ribbon .stat:first-child, .v-glass .stat:first-child, .v-plain .stat:first-child { border-top: 0; }
+  .v-glass { background: #073f31; padding: 18px 0 14px; }
+  .v-glass .stat { border-top-color: rgba(255,255,255,.16); }
+  .v-glass .stat-title { color: #fff; }
+  .v-glass .stat-text { color: rgba(255,255,255,.8); }
+  .v-glass .stats-bar { background: transparent; border: 0; box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none; }
+  .v-plain .stat .counter { font-size: 26px; }
+  .v-ribbon .stats-dots, .v-glass .stats-dots, .v-plain .stats-dots { display: none; }
+}
