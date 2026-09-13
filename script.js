@@ -225,3 +225,20 @@ document.querySelectorAll('.contact-form[data-whatsapp]').forEach((form) => {
   sync();
   mobile.addEventListener('change', sync);
 })();
+
+// ---------- Paiement en 3 fois : calcul selon la formule choisie ----------
+document.querySelectorAll('.pay-card').forEach((card) => {
+  const select = card.querySelector('.pay-select');
+  const total = card.querySelector('.pay-total bdi');
+  const each = card.querySelector('.pay-each bdi');
+  if (!select || !total || !each) return;
+  const cur = card.dataset.currency || 'DH';
+  const fmt = (n) => new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 0 }).format(n).replace(/[\u202f\u00a0]/g, ' ');
+  const update = () => {
+    const price = Number(select.value) || 0;
+    total.textContent = `${fmt(price)} ${cur}`;
+    each.textContent = `${fmt(Math.round(price / 3))} ${cur}`;
+  };
+  select.addEventListener('change', update);
+  update();
+});
