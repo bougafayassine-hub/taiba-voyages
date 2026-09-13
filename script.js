@@ -150,6 +150,54 @@ document.querySelectorAll('.contact-form[data-whatsapp]').forEach((form) => {
   });
 });
 
+// ---------- Chiffres clés sur mobile : chaque ligne glisse à son entrée dans l'écran ----------
+(() => {
+  const rows = [...document.querySelectorAll('.v-mix .stat')];
+  if (!rows.length) return;
+  const mobile = window.matchMedia('(max-width: 900px)');
+  let batchStart = 0;
+  let batchCount = 0;
+  const show = (row) => {
+    if (row.classList.contains('is-in')) return;
+    const now = performance.now();
+    if (now - batchStart > 800) { batchStart = now; batchCount = 0; }
+    row.style.transitionDelay = `${batchCount * 350}ms`;
+    batchCount += 1;
+    row.classList.add('is-in');
+  };
+  if (!mobile.matches || !('IntersectionObserver' in window)) { rows.forEach(show); return; }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => { if (e.isIntersecting) { show(e.target); io.unobserve(e.target); } });
+  }, { threshold: 0.35 });
+  rows.forEach((r) => io.observe(r));
+  const check = () => rows.forEach((r) => {
+    const b = r.getBoundingClientRect();
+    if (b.top < window.innerHeight * 0.9 && b.bottom > 0) show(r);
+  });
+  window.addEventListener('scroll', check, { passive: true });
+  check();
+})();
+
+// ---------- Formulaire : ouverture de WhatsApp avec le message prérempli ----------
+document.querySelectorAll('.contact-form[data-whatsapp]').forEach((form) => {
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const data = new FormData(form);
+    const fields = {
+      name: String(data.get('name') || '').trim(),
+      phone: String(data.get('phone') || '').trim(),
+      pack: String(data.get('pack') || '').trim(),
+      message: String(data.get('message') || '').trim(),
+    };
+    const text = (form.dataset.template || '{name} {phone} {pack} {message}')
+      .replace(/\{(\w+)\}/g, (_, key) => fields[key] || '')
+      .replace(/\s+/g, ' ')
+      .trim();
+    const url = `https://wa.me/${form.dataset.whatsapp}?text=${encodeURIComponent(text)}`;
+    window.open(url, '_blank', 'noopener');
+  });
+});
+
 // ---------- Cartes de chiffres sur mobile : points de navigation et défilement doux ----------
 (() => {
   const bar = document.querySelector('.stats-bar');

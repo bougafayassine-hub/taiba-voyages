@@ -1768,66 +1768,16 @@ html.js .pledge.is-highlight,
 @keyframes caret-blink { 50% { opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .typewriter .caret { display: none; } }
 
-/* ---------- Présentations alternatives de la preuve sociale (activées par classe sur .stats-anchor) ---------- */
-/* A — Ruban : une seule bande sable, quatre colonnes séparées par des filets */
-.v-ribbon .stats-bar {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 0;
-  padding: 20px 8px;
-  border-radius: 22px;
-  background: #f7e8c8;
-  border: 1px solid rgba(255,255,255,.7);
-  box-shadow: 0 14px 34px rgba(0,0,0,.14);
-}
-.v-ribbon .stat {
-  padding: 4px 24px;
-  border-radius: 0;
-  background: transparent;
-  border: 0;
-  box-shadow: none;
-  border-inline-start: 1px solid rgba(7,75,57,.16);
-}
-.v-ribbon .stat:first-child { border-inline-start: 0; }
-
-/* B — Bande sur la vidéo : verre fumé à l'intérieur du hero, chiffres or, texte blanc */
-.v-glass .stats-bar {
-  transform: translate(-50%, calc(-100% - 22px));
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 0;
-  padding: 18px 8px;
-  border-radius: 20px;
-  background: rgba(6,20,17,.42);
-  border: 1px solid rgba(255,255,255,.22);
-  -webkit-backdrop-filter: blur(10px);
-          backdrop-filter: blur(10px);
-  box-shadow: 0 14px 34px rgba(0,0,0,.18);
-}
-.v-glass .stat {
-  padding: 2px 22px;
-  border-radius: 0;
-  background: transparent;
-  border: 0;
-  box-shadow: none;
-  border-inline-start: 1px solid rgba(255,255,255,.18);
-}
-.v-glass .stat:first-child { border-inline-start: 0; }
-.v-glass .stat .counter { color: var(--gold-light); }
-.v-glass .stat-title { color: #fff; }
-.v-glass .stat-text { color: rgba(255,255,255,.8); }
-.v-glass + .agency { padding-top: 56px; }
-
-/* C — Ligne de chiffres : sans fond, sous le hero, chiffres verts, séparateurs or */
-.v-plain { height: auto; padding: 34px 0 6px; background: var(--ivory); }
-.v-plain .stats-bar {
+/* ---------- Preuve sociale : ligne de chiffres sur ordinateur, bande verte animée sur téléphone ---------- */
+.v-mix { height: auto; padding: 34px 0 6px; background: var(--ivory); }
+.v-mix .stats-bar {
   position: static;
   transform: none;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 0;
 }
-.v-plain .stat {
+.v-mix .stat {
   padding: 4px 26px;
   border-radius: 0;
   background: transparent;
@@ -1835,35 +1785,44 @@ html.js .pledge.is-highlight,
   box-shadow: none;
   border-inline-start: 1px solid rgba(224,179,62,.55);
 }
-.v-plain .stat:first-child { border-inline-start: 0; }
-.v-plain .stat .counter { color: var(--green); font-size: 38px; }
-.v-plain .stat-title { color: var(--green); }
-.v-plain + .agency { padding-top: 40px; }
+.v-mix .stat:first-child { border-inline-start: 0; }
+.v-mix .stat .counter { color: var(--green); font-size: 38px; }
+.v-mix .stat-title { color: var(--green); }
+.v-mix + .agency { padding-top: 40px; }
 
 @media (max-width: 900px) {
-  /* Sur mobile, les trois variantes deviennent une liste dans une bande, sans carrousel */
-  .v-ribbon .stats-bar, .v-glass .stats-bar, .v-plain .stats-bar {
+  .v-mix { background: #073f31; padding: 16px 0 12px; overflow: hidden; }
+  .v-mix .stats-bar {
     display: grid;
     grid-template-columns: 1fr;
     gap: 0;
     width: calc(100% - 28px);
     margin: 0 auto;
-    padding: 6px 0;
+    padding: 0;
     overflow: visible;
     transform: none;
   }
-  .v-ribbon .stat, .v-glass .stat, .v-plain .stat {
+  .v-mix .stat {
     flex: none;
-    padding: 12px 18px;
+    padding: 14px 16px;
     border-inline-start: 0;
-    border-top: 1px solid rgba(7,75,57,.14);
+    border-top: 1px solid rgba(255,255,255,.16);
   }
-  .v-ribbon .stat:first-child, .v-glass .stat:first-child, .v-plain .stat:first-child { border-top: 0; }
-  .v-glass { background: #073f31; padding: 18px 0 14px; }
-  .v-glass .stat { border-top-color: rgba(255,255,255,.16); }
-  .v-glass .stat-title { color: #fff; }
-  .v-glass .stat-text { color: rgba(255,255,255,.8); }
-  .v-glass .stats-bar { background: transparent; border: 0; box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none; }
-  .v-plain .stat .counter { font-size: 26px; }
-  .v-ribbon .stats-dots, .v-glass .stats-dots, .v-plain .stats-dots { display: none; }
+  .v-mix .stat:first-child { border-top: 0; }
+  .v-mix .stat .counter { color: var(--gold-light); font-size: 27px; }
+  .v-mix .stat-title { color: #fff; }
+  .v-mix .stat-text { color: rgba(255,255,255,.82); }
+  .v-mix .stats-dots { display: none; }
+
+  /* Apparition au défilement : une ligne par la gauche, la suivante par la droite */
+  html.js .v-mix .stat {
+    opacity: 0;
+    transform: translateX(-48px);
+    transition: opacity 1s ease, transform 1s cubic-bezier(.2,.7,.2,1);
+  }
+  html.js .v-mix .stat:nth-child(even) { transform: translateX(48px); }
+  html.js .v-mix .stat.is-in { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html.js .v-mix .stat { opacity: 1; transform: none; transition: none; }
 }
