@@ -280,4 +280,53 @@ document.querySelectorAll('.pay-card').forEach((card) => {
   const check = () => cards.forEach((c) => { if (inView(c)) show(c); });
   window.addEventListener('scroll', check, { passive: true });
   check();
+
+  // Clic sur « Facilités de paiement » : aller à la section et surligner la carte paiement.
+  document.querySelectorAll('[data-highlight]').forEach((link) => {
+    link.addEventListener('click', () => {
+      const target = document.querySelector(link.dataset.highlight);
+      if (!target) return;
+      setTimeout(() => cards.forEach(show), 500);
+      setTimeout(() => {
+        target.classList.add('is-highlight');
+        setTimeout(() => target.classList.remove('is-highlight'), 3200);
+      }, 2300);
+    });
+  });
 })();
+
+// ---------- Citation du gérant : effet machine à écrire à l'entrée dans l'écran ----------
+(() => {
+  const el = document.querySelector('.typewriter');
+  if (!el) return;
+  const text = el.dataset.text || el.textContent.trim();
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce || !('IntersectionObserver' in window)) { el.textContent = text; return; }
+  el.style.minHeight = `${el.offsetHeight}px`;
+  el.textContent = '';
+  const caret = document.createElement('span');
+  caret.className = 'caret';
+  caret.setAttribute('aria-hidden', 'true');
+  el.setAttribute('aria-label', text);
+  el.appendChild(caret);
+  let started = false;
+  const type = () => {
+    if (started) return;
+    started = true;
+    let i = 0;
+    const step = () => {
+      if (i >= text.length) { setTimeout(() => caret.remove(), 2500); return; }
+      caret.before(document.createTextNode(text[i]));
+      const ch = text[i];
+      i += 1;
+      const pause = /[.,،؛!?]/.test(ch) ? 260 : 34;
+      setTimeout(step, pause);
+    };
+    setTimeout(step, 350);
+  };
+  const io = new IntersectionObserver((entries) => {
+    if (entries.some((e) => e.isIntersecting)) { type(); io.disconnect(); }
+  }, { threshold: 0.6 });
+  io.observe(el);
+})();
+
