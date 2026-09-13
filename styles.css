@@ -1878,6 +1878,7 @@ html.js .pledge.is-highlight,
     row-gap: 4px;
     text-align: center;
   }
+  .v-mix .stat:first-child, .v-mix .stat:last-child { padding-inline: 56px; }
   .v-mix .stat .counter { flex: 0 0 auto; }
   .v-mix .stat-title { flex: 0 0 auto; max-width: 100%; }
   .v-mix .stat-text { flex: 0 0 100%; max-width: 30ch; margin: 0 auto; }
