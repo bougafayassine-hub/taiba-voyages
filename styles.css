@@ -287,11 +287,11 @@ button, a { -webkit-tap-highlight-color: transparent; }
 
 h1 {
   margin: 29px auto 19px;
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: clamp(58px, 4.55vw, 76px);
-  line-height: .94;
-  font-weight: 600;
-  letter-spacing: -.025em;
+  font-family: "Plus Jakarta Sans", "Inter", Arial, sans-serif;
+  font-size: clamp(50px, 4.2vw, 68px);
+  line-height: 1;
+  font-weight: 300;
+  letter-spacing: -.045em;
   text-wrap: balance;
   text-shadow:
     0 4px 18px rgba(0,0,0,.92),
@@ -302,8 +302,10 @@ h1 {
 h1 span { display: block; }
 h1 .line-white { color: #fff; }
 h1 .line-gold {
-  margin-top: 8px;
+  margin-top: 4px;
   color: #e8ba42;
+  font-weight: 800;
+  letter-spacing: -.04em;
 }
 
 .hero-lead {
@@ -366,12 +368,17 @@ h1 .line-gold {
   background: rgba(255,255,255,.5);
 }
 
+.stats-anchor {
+  position: relative;
+  z-index: 3;
+  height: 0;
+}
 .stats-bar {
   position: absolute;
   z-index: 3;
   left: 50%;
-  bottom: 0;
-  transform: translate(-50%, 50%);
+  top: 0;
+  transform: translate(-50%, -50%);
   width: min(1240px, calc(100% - 64px));
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -431,7 +438,7 @@ h1 .line-gold {
   .whatsapp-icon { width: 17px; height: 17px; }
   .google-badge { right: 24px; }
   .hero-content { padding-top: 135px; }
-  h1 { font-size: clamp(52px, 5.5vw, 70px); }
+  h1 { font-size: clamp(46px, 5vw, 62px); }
 }
 
 @media (max-width: 900px) {
@@ -511,18 +518,23 @@ h1 .line-gold {
   .eyebrow span { width: 22px; }
   h1 {
     margin-top: 20px;
-    font-size: clamp(44px, 12vw, 62px);
-    line-height: .95;
+    font-size: clamp(38px, 10.5vw, 54px);
+    line-height: 1.02;
   }
   h1 .line-gold { margin-top: 6px; }
   .hero-lead { font-size: 16px; line-height: 1.5; max-width: 580px; }
   .desktop-break { display: none; }
 
   /* Cartes de chiffres : carrousel plein écran, une carte à la fois */
+  .stats-anchor {
+    height: auto;
+    padding: 26px 0 10px;
+    background: var(--ivory);
+  }
   .stats-bar {
+    position: static;
     width: 100%;
-    left: 0;
-    transform: translateY(50%);
+    transform: none;
     display: flex;
     gap: 14px;
     padding: 0 18px;
@@ -544,10 +556,7 @@ h1 .line-gold {
   .stat-title { margin-top: 6px; font-size: 13.5px; }
   .stat-text { margin-top: 4px; font-size: 12.5px; line-height: 1.45; }
   .stats-dots {
-    position: absolute;
-    left: 0;
-    right: 0;
-    z-index: 3;
+    margin-top: 12px;
     display: flex;
     justify-content: center;
     gap: 6px;
@@ -571,7 +580,7 @@ h1 .line-gold {
   .lang-btn { padding: 0 6px; gap: 0; }
   .hero { min-height: 690px; }
   .hero-content { padding-top: 134px; }
-  h1 { font-size: clamp(40px, 12.3vw, 54px); }
+  h1 { font-size: clamp(34px, 10.5vw, 48px); }
   .hero-lead { font-size: 15px; }
 }
 
@@ -620,13 +629,13 @@ html[dir="rtl"] .eyebrow {
   font-weight: 700;
 }
 html[dir="rtl"] h1 {
-  font-family: "Amiri", "Scheherazade New", "Times New Roman", serif;
-  font-size: clamp(50px, 4.2vw, 70px);
-  line-height: 1.22;
+  font-family: "Tajawal", "Segoe UI", Tahoma, sans-serif;
+  font-size: clamp(46px, 4vw, 66px);
+  line-height: 1.2;
   letter-spacing: 0;
-  font-weight: 700;
+  font-weight: 300;
 }
-html[dir="rtl"] h1 .line-gold { margin-top: 0; }
+html[dir="rtl"] h1 .line-gold { margin-top: 0; font-weight: 800; letter-spacing: 0; }
 html[dir="rtl"] .hero-lead {
   font-size: 18.5px;
   line-height: 1.75;
@@ -655,7 +664,7 @@ html[dir="rtl"] .lang-btn { letter-spacing: 0; }
   padding: 84px 0 72px;
   background: var(--ivory);
 }
-.hero + .agency { padding-top: 150px; }
+.stats-anchor + .agency { padding-top: 150px; }
 
 .section-head {
   max-width: 680px;
@@ -670,7 +679,7 @@ html[dir="rtl"] .lang-btn { letter-spacing: 0; }
 
 .section-head h2 {
   margin: 18px 0 12px;
-  font-family: "Cormorant Garamond", Georgia, serif;
+  font-family: "Plus Jakarta Sans", "Inter", Arial, sans-serif;
   font-size: clamp(36px, 3.4vw, 48px);
   line-height: 1.05;
   font-weight: 600;
@@ -754,7 +763,7 @@ html[dir="rtl"] .lang-btn { letter-spacing: 0; }
 }
 .contact-form h3 {
   margin: 0 0 4px;
-  font-family: "Cormorant Garamond", Georgia, serif;
+  font-family: "Plus Jakarta Sans", "Inter", Arial, sans-serif;
   font-size: 28px;
   font-weight: 600;
   color: var(--green);
@@ -828,7 +837,7 @@ html[dir="rtl"] .lang-btn { letter-spacing: 0; }
 }
 
 @media (max-width: 900px) {
-  .hero { min-height: 0; height: auto; max-height: none; padding-bottom: 92px; }
+  .hero { min-height: 0; height: auto; max-height: none; padding-bottom: 44px; }
   .hero-content { padding-top: 88px; }
   .hero-actions { margin-top: 20px; gap: 10px; flex-wrap: nowrap; }
   .ghost-cta { flex: 1 1 0; min-width: 0; height: 42px; font-size: 13px; padding: 0 10px; justify-content: center; }
@@ -842,7 +851,7 @@ html[dir="rtl"] .lang-btn { letter-spacing: 0; }
   }
   .container { width: calc(100% - 32px); }
   .location { padding: 56px 0 48px; }
-  .hero + .agency { padding-top: 118px; }
+  .stats-anchor + .agency { padding-top: 40px; }
   .section-head { margin-bottom: 28px; }
   .location-grid { grid-template-columns: 1fr; gap: 18px; }
   .map-frame { min-height: 260px; }
@@ -854,14 +863,14 @@ html[dir="rtl"] .lang-btn { letter-spacing: 0; }
 }
 
 html[dir="rtl"] .section-head h2 {
-  font-family: "Amiri", "Scheherazade New", "Times New Roman", serif;
+  font-family: "Tajawal", "Segoe UI", Tahoma, sans-serif;
   font-size: clamp(32px, 3.2vw, 44px);
   line-height: 1.3;
   letter-spacing: 0;
   font-weight: 700;
 }
 html[dir="rtl"] .contact-form h3 {
-  font-family: "Amiri", "Scheherazade New", serif;
+  font-family: "Tajawal", "Segoe UI", Tahoma, sans-serif;
   font-size: 26px;
   letter-spacing: 0;
 }
@@ -944,7 +953,7 @@ html[dir="rtl"] .directions::after { content: " ←"; }
 .float-brand { bottom: 40px; left: 0; padding: 12px 20px 12px 12px; border-radius: 18px; }
 .float-brand img { width: 52px; height: auto; }
 .float-brand small { order: -1; margin: 0 0 3px; font-size: 12px; }
-.float-brand strong { font-family: "Cormorant Garamond", Georgia, serif; font-size: 22px; letter-spacing: -.01em; color: var(--green); }
+.float-brand strong { font-family: "Plus Jakarta Sans", "Inter", Arial, sans-serif; font-size: 22px; letter-spacing: -.01em; color: var(--green); }
 .float-gen {
   bottom: 0;
   right: 0;
@@ -952,14 +961,14 @@ html[dir="rtl"] .directions::after { content: " ←"; }
   background: linear-gradient(180deg, #0c5a45, #064b39);
   border: 0;
 }
-.float-gen strong { color: #fff; font-family: "Cormorant Garamond", Georgia, serif; font-size: 20px; }
+.float-gen strong { color: #fff; font-family: "Plus Jakarta Sans", "Inter", Arial, sans-serif; font-size: 20px; }
 .float-gen small { color: rgba(255,255,255,.78); }
 
 .eyebrow-start { justify-content: flex-start; }
 
 .agency-copy h2 {
   margin: 16px 0 14px;
-  font-family: "Cormorant Garamond", Georgia, serif;
+  font-family: "Plus Jakarta Sans", "Inter", Arial, sans-serif;
   font-size: clamp(34px, 3.2vw, 46px);
   line-height: 1.06;
   font-weight: 600;
@@ -1062,7 +1071,7 @@ html[dir="rtl"] .directions::after { content: " ←"; }
 }
 
 html[dir="rtl"] .agency-copy h2 {
-  font-family: "Amiri", "Scheherazade New", "Times New Roman", serif;
+  font-family: "Tajawal", "Segoe UI", Tahoma, sans-serif;
   font-size: clamp(30px, 3vw, 42px);
   line-height: 1.3;
   letter-spacing: 0;
@@ -1071,7 +1080,7 @@ html[dir="rtl"] .agency-copy h2 {
 html[dir="rtl"] .agency-subtitle { letter-spacing: 0; font-size: 14px; }
 html[dir="rtl"] .agency-visual { padding: 18px 26px 26px 0; }
 html[dir="rtl"] .float-brand { left: auto; right: 0; padding: 12px 12px 12px 20px; }
-html[dir="rtl"] .float-brand strong { font-family: "Amiri", serif; font-size: 20px; }
+html[dir="rtl"] .float-brand strong { font-family: "Tajawal", sans-serif; font-size: 20px; }
 html[dir="rtl"] .agency-actions .contact-cta { padding: 0 18px 0 22px; }
 @media (max-width: 900px) {
   html[dir="rtl"] .agency-visual { padding: 12px 8px 22px; }
@@ -1194,7 +1203,7 @@ html[dir="rtl"] .agency-actions .contact-cta { padding: 0 18px 0 22px; }
 }
 .founder-quote p {
   margin: 0;
-  font-family: "Cormorant Garamond", Georgia, serif;
+  font-family: "Plus Jakarta Sans", "Inter", Arial, sans-serif;
   font-size: 24px;
   line-height: 1.3;
   font-weight: 600;
@@ -1211,66 +1220,114 @@ html[dir="rtl"] .agency-actions .contact-cta { padding: 0 18px 0 22px; }
 .founder-quote footer strong { font-size: 15px; color: var(--ink); }
 .founder-quote footer span { font-size: 13px; color: #6b7673; }
 html[dir="rtl"] .founder-quote { border-radius: 16px 0 0 16px; background: linear-gradient(270deg, rgba(224,179,62,.10), transparent 80%); }
-html[dir="rtl"] .founder-quote p { font-family: "Amiri", serif; font-size: 24px; line-height: 1.6; }
+html[dir="rtl"] .founder-quote p { font-family: "Tajawal", sans-serif; font-size: 24px; line-height: 1.6; }
 html[dir="rtl"] .founder-quote p::before { content: "» "; }
 html[dir="rtl"] .founder-quote p::after { content: " «"; }
 
 /* ---------- Nos engagements ---------- */
 .pledges {
-  position: relative;
-  padding: 88px 0 84px;
-  color: #fff;
-  isolation: isolate;
-  overflow: hidden;
+  padding: 84px 0 80px;
+  background: #f4efe4;
 }
-.pledges-media {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background:
-    linear-gradient(180deg, rgba(4,36,28,.90), rgba(4,36,28,.94)),
-    url("assets/hero-placeholder.jpg") center 40% / cover no-repeat;
+.pledges-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 32px;
+  margin-bottom: 30px;
 }
-html[dir="rtl"] .pledges-media { background-image: linear-gradient(180deg, rgba(4,36,28,.90), rgba(4,36,28,.94)), url("../assets/hero-placeholder.jpg"); }
-.section-head-light h2 { color: #fff; }
-.section-head-light p { color: rgba(255,255,255,.82); }
-.section-head-light .eyebrow { text-shadow: none; }
+.pledges-copy { max-width: 640px; }
+.pledges-copy h2 {
+  margin: 16px 0 12px;
+  font-family: "Plus Jakarta Sans", "Inter", Arial, sans-serif;
+  font-size: clamp(32px, 3vw, 42px);
+  line-height: 1.04;
+  font-weight: 300;
+  letter-spacing: -.04em;
+  color: var(--green);
+  text-wrap: balance;
+}
+.pledges-copy h2 strong { font-weight: 800; letter-spacing: -.035em; }
+.pledges-copy p { margin: 0; font-size: 15.5px; line-height: 1.6; color: #3f4b48; }
+.pledges-cta { flex: 0 0 auto; height: 46px; font-size: 15px; padding: 0 22px 0 18px; }
 
 .pledge-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 18px;
+  gap: 16px;
 }
+@property --draw { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
 .pledge {
-  padding: 26px 24px 24px;
+  position: relative;
+  padding: 26px 24px 26px;
+  border-radius: 18px;
+  background: #fff;
+  border: 1px solid rgba(7,75,57,.06);
+  box-shadow: 0 6px 18px rgba(7,40,32,.04);
+  --draw: 0deg;
+  transition: transform .35s ease, box-shadow .35s ease, --draw .7s ease-out;
+}
+.pledge:first-child { background: #f7e8c8; }
+.pledge::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
   border-radius: 20px;
-  background: rgba(255,255,255,.06);
-  border: 1px solid rgba(255,255,255,.14);
-  -webkit-backdrop-filter: blur(6px);
-          backdrop-filter: blur(6px);
+  padding: 2px;
+  background: conic-gradient(from -90deg, #e6bd4a var(--draw), transparent 0);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+          mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+}
+.pledge:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 22px 44px rgba(7,40,32,.14), 0 0 0 6px rgba(224,179,62,.12);
+  --draw: 360deg;
 }
 .pledge-icon {
-  width: 52px;
-  height: 52px;
+  width: 44px;
+  height: 44px;
   display: grid;
   place-items: center;
-  border-radius: 14px;
-  color: var(--gold-light);
-  background: rgba(224,179,62,.14);
+  border-radius: 50%;
+  color: var(--green);
+  background: rgba(224,179,62,.22);
 }
-.pledge-icon svg { width: 30px; height: 30px; }
+.pledge:first-child .pledge-icon { background: rgba(255,255,255,.75); }
+.pledge-icon svg { width: 24px; height: 24px; }
 .pledge h3 {
-  margin: 18px 0 8px;
-  font-size: 18px;
-  font-weight: 700;
-  letter-spacing: -.01em;
-  color: #fff;
+  margin: 22px 0 10px;
+  font-family: "Plus Jakarta Sans", "Inter", Arial, sans-serif;
+  font-size: 20px;
+  line-height: 1.15;
+  font-weight: 800;
+  letter-spacing: -.03em;
+  color: var(--ink);
 }
 .pledge p {
   margin: 0;
-  font-size: 14.5px;
+  font-size: 14px;
   line-height: 1.55;
-  color: rgba(255,255,255,.8);
+  color: #4d5552;
+}
+
+/* Apparition en cascade à l'arrivée sur la section (uniquement si JS actif) */
+html.js .pledge {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity .6s ease, transform .6s ease, box-shadow .35s ease, --draw .7s ease-out;
+}
+html.js .pledge:nth-child(2) { transition-delay: .15s; }
+html.js .pledge:nth-child(3) { transition-delay: .3s; }
+html.js .pledge:nth-child(4) { transition-delay: .45s; }
+html.js .pledge-grid.is-in .pledge { opacity: 1; transform: none; }
+html.js .pledge-grid.is-done .pledge { transition: transform .35s ease, box-shadow .35s ease, --draw .7s ease-out; transition-delay: 0s; }
+html.js .pledge-grid.is-done .pledge:hover { transform: translateY(-6px); }
+@media (prefers-reduced-motion: reduce) {
+  html.js .pledge { opacity: 1; transform: none; transition: none; }
+  .pledge:hover { transform: none; }
 }
 
 /* ---------- Nos formules ---------- */
@@ -1311,7 +1368,7 @@ html[dir="rtl"] .pledges-media { background-image: linear-gradient(180deg, rgba(
 .pack-luxepp .pack-tier { background: linear-gradient(180deg, #f3d270, #d9a11f); }
 .pack-head h3 {
   margin: 12px 0 4px;
-  font-family: "Cormorant Garamond", Georgia, serif;
+  font-family: "Plus Jakarta Sans", "Inter", Arial, sans-serif;
   font-size: 26px;
   font-weight: 600;
   letter-spacing: -.01em;
@@ -1393,7 +1450,7 @@ html[dir="rtl"] .pledges-media { background-image: linear-gradient(180deg, rgba(
 }
 .vip-copy h3 {
   margin: 12px 0 6px;
-  font-family: "Cormorant Garamond", Georgia, serif;
+  font-family: "Plus Jakarta Sans", "Inter", Arial, sans-serif;
   font-size: 30px;
   font-weight: 600;
   letter-spacing: -.01em;
@@ -1426,7 +1483,7 @@ html[dir="rtl"] .pledges-media { background-image: linear-gradient(180deg, rgba(
 }
 .payment-copy h2 {
   margin: 16px 0 14px;
-  font-family: "Cormorant Garamond", Georgia, serif;
+  font-family: "Plus Jakarta Sans", "Inter", Arial, sans-serif;
   font-size: clamp(34px, 3.2vw, 46px);
   line-height: 1.06;
   font-weight: 600;
@@ -1567,7 +1624,7 @@ html[dir="rtl"] .vip-tag { letter-spacing: 0; }
 html[dir="rtl"] .pack-head h3,
 html[dir="rtl"] .vip-copy h3,
 html[dir="rtl"] .payment-copy h2 {
-  font-family: "Amiri", "Scheherazade New", serif;
+  font-family: "Tajawal", "Segoe UI", Tahoma, sans-serif;
   letter-spacing: 0;
   line-height: 1.3;
 }
@@ -1584,8 +1641,9 @@ html[dir="rtl"] .pay-split strong { unicode-bidi: isolate; }
 @media (max-width: 900px) {
   .founder-quote { padding: 18px 20px 16px 22px; }
   .founder-quote p { font-size: 21px; }
-  .pledges { padding: 56px 0 52px; }
-  .pledge { padding: 20px 18px 18px; }
+  .pledges { padding: 56px 0 48px; }
+  .pledges-head { flex-direction: column; align-items: flex-start; gap: 18px; margin-bottom: 22px; }
+  .pledge { padding: 22px 20px 22px; }
   .packs, .payment, .faq { padding: 56px 0 48px; }
   .vip-banner { flex-direction: column; align-items: flex-start; padding: 24px 22px; }
   .vip-cta { width: 100%; justify-content: center; }
@@ -1598,3 +1656,52 @@ html[dir="rtl"] .pay-split strong { unicode-bidi: isolate; }
 @media (max-width: 560px) {
   .pledge-grid, .pack-grid { grid-template-columns: 1fr; }
 }
+
+/* ---------- Titres : Plus Jakarta Sans, partie légère puis partie grasse ---------- */
+.section-head h2,
+.agency-copy h2,
+.payment-copy h2 {
+  font-weight: 300;
+  letter-spacing: -.04em;
+  line-height: 1.04;
+}
+.section-head h2 strong,
+.agency-copy h2 strong,
+.payment-copy h2 strong {
+  font-weight: 800;
+  letter-spacing: -.035em;
+}
+.section-head h2 { font-size: clamp(34px, 3.2vw, 46px); }
+.contact-form h3,
+.pack-head h3,
+.vip-copy h3 {
+  font-weight: 800;
+  letter-spacing: -.03em;
+}
+.pack-head h3 { font-size: 22px; }
+.vip-copy h3 { font-size: 26px; }
+.contact-form h3 { font-size: 24px; }
+.founder-quote p {
+  font-family: "Plus Jakarta Sans", "Inter", Arial, sans-serif;
+  font-size: 21px;
+  line-height: 1.35;
+  font-weight: 500;
+  letter-spacing: -.02em;
+}
+.float-brand strong { font-weight: 800; font-size: 19px; letter-spacing: -.02em; }
+
+html[dir="rtl"] .section-head h2,
+html[dir="rtl"] .agency-copy h2,
+html[dir="rtl"] .payment-copy h2 { letter-spacing: 0; line-height: 1.3; font-weight: 300; font-size: clamp(30px, 3vw, 42px); }
+html[dir="rtl"] .section-head h2 strong,
+html[dir="rtl"] .agency-copy h2 strong,
+html[dir="rtl"] .payment-copy h2 strong { font-weight: 800; letter-spacing: 0; }
+html[dir="rtl"] .contact-form h3,
+html[dir="rtl"] .pack-head h3,
+html[dir="rtl"] .vip-copy h3,
+html[dir="rtl"] .pledge h3,
+html[dir="rtl"] .pledges-copy h2 { font-family: "Tajawal", "Segoe UI", Tahoma, sans-serif; letter-spacing: 0; }
+html[dir="rtl"] .pledges-copy h2 { font-weight: 300; line-height: 1.3; }
+html[dir="rtl"] .pledges-copy h2 strong { font-weight: 800; }
+html[dir="rtl"] .founder-quote p { font-family: "Tajawal", sans-serif; font-size: 22px; line-height: 1.6; font-weight: 500; }
+html[dir="rtl"] .float-brand strong { font-family: "Tajawal", sans-serif; font-size: 19px; }

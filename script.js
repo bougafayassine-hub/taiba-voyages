@@ -1,3 +1,5 @@
+document.documentElement.classList.add('js');
+
 const toggle = document.querySelector('.menu-toggle');
 const panel = document.querySelector('.mobile-panel');
 
@@ -181,10 +183,7 @@ document.querySelectorAll('.contact-form[data-whatsapp]').forEach((form) => {
     const i = index();
     dots.querySelectorAll('button').forEach((b, k) => b.classList.toggle('is-active', k === i));
   };
-  const place = () => {
-    if (!dots) return;
-    dots.style.top = `calc(100% + ${Math.round(bar.offsetHeight / 2) + 12}px)`;
-  };
+  const place = () => {};
 
   const start = () => {
     if (dots) return;
@@ -197,7 +196,7 @@ document.querySelectorAll('.contact-form[data-whatsapp]').forEach((form) => {
       b.addEventListener('click', () => { pausedUntil = Date.now() + 9000; goTo(i); });
       dots.appendChild(b);
     });
-    hero.appendChild(dots);
+    (document.querySelector('.stats-anchor') || hero).appendChild(dots);
     place(); paint();
     bar.addEventListener('scroll', paint, { passive: true });
     bar.addEventListener('touchstart', () => { pausedUntil = Date.now() + 9000; }, { passive: true });
@@ -242,3 +241,18 @@ document.querySelectorAll('.pay-card').forEach((card) => {
   select.addEventListener('change', update);
   update();
 });
+
+// ---------- Engagements : apparition en cascade à l'arrivée sur la section ----------
+(() => {
+  const grid = document.querySelector('.pledge-grid');
+  if (!grid) return;
+  const reveal = () => {
+    grid.classList.add('is-in');
+    setTimeout(() => grid.classList.add('is-done'), 1300);
+  };
+  if (!('IntersectionObserver' in window)) { reveal(); return; }
+  const io = new IntersectionObserver((entries) => {
+    if (entries.some((e) => e.isIntersecting)) { reveal(); io.disconnect(); }
+  }, { threshold: 0.25 });
+  io.observe(grid);
+})();
