@@ -37,12 +37,16 @@ if (heroVideo) {
 const counters = document.querySelectorAll('.counter[data-count]');
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-const formatNumber = (n) => new Intl.NumberFormat('fr-FR').format(n).replace(/ | /g, ' ');
+const formatNumber = (n, decimals = 0) => new Intl.NumberFormat('fr-FR', {
+  minimumFractionDigits: decimals,
+  maximumFractionDigits: decimals,
+}).format(n).replace(/ | /g, ' ');
 
 const renderCounter = (el, value) => {
   const prefix = el.dataset.prefix || '';
   const suffix = el.dataset.suffix || '';
-  el.textContent = `${prefix}${formatNumber(value)}${suffix}`;
+  const decimals = Number(el.dataset.decimals || 0);
+  el.textContent = `${prefix}${formatNumber(value, decimals)}${suffix}`;
 };
 
 const animateCounter = (el) => {
@@ -56,7 +60,9 @@ const animateCounter = (el) => {
   const step = (now) => {
     const progress = Math.min((now - start) / duration, 1);
     const eased = 1 - Math.pow(1 - progress, 3);
-    renderCounter(el, Math.round(target * eased));
+    const decimals = Number(el.dataset.decimals || 0);
+    const factor = 10 ** decimals;
+    renderCounter(el, Math.round(target * eased * factor) / factor);
     if (progress < 1) requestAnimationFrame(step);
   };
   requestAnimationFrame(step);

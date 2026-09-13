@@ -242,7 +242,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
   -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z'/%3E%3C/svg%3E") center / contain no-repeat;
           mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z'/%3E%3C/svg%3E") center / contain no-repeat;
 }
-.stars i.half { background: linear-gradient(90deg, #fbbc05 0 60%, #dadce0 60% 100%); }
+.stars i.half { background: linear-gradient(90deg, #fbbc05 0 50%, #dadce0 50% 100%); }
 
 .google-sep {
   width: 1px;
@@ -1103,4 +1103,48 @@ html[dir="rtl"] .agency-actions .contact-cta { padding: 0 18px 0 22px; }
     padding: 0 12px 0 9px;
   }
   .hero-content { padding-top: 118px; }
+}
+
+/* ---------- Animations des cartes de chiffres (propositions) ---------- */
+/* A — Chiffres : reflet or qui traverse lentement chaque chiffre */
+.stats-bar.anim-numbers .counter {
+  background: linear-gradient(100deg, #121512 0%, #121512 40%, #c9971c 50%, #121512 60%, #121512 100%);
+  background-size: 260% 100%;
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+  animation: number-shine 7s ease-in-out infinite;
+}
+.stats-bar.anim-numbers .stat:nth-child(2) .counter { animation-delay: .6s; }
+.stats-bar.anim-numbers .stat:nth-child(3) .counter { animation-delay: 1.2s; }
+.stats-bar.anim-numbers .stat:nth-child(4) .counter { animation-delay: 1.8s; }
+@keyframes number-shine {
+  0%, 55% { background-position: 100% 0; }
+  85%, 100% { background-position: 0% 0; }
+}
+
+/* B — Contour : fine lueur dorée qui parcourt le bord de chaque carte, de carte en carte */
+@property --ring { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+.stats-bar.anim-ring .stat {
+  position: relative;
+  border-color: transparent;
+  background-clip: padding-box;
+}
+.stats-bar.anim-ring .stat::before {
+  content: "";
+  position: absolute;
+  inset: -1.5px;
+  z-index: -1;
+  border-radius: inherit;
+  background:
+    conic-gradient(from var(--ring), transparent 0 62%, rgba(224,179,62,.35) 74%, #e6bd4a 82%, rgba(224,179,62,.35) 90%, transparent 100%),
+    rgba(255,255,255,.7);
+  animation: ring-travel 6s linear infinite;
+}
+.stats-bar.anim-ring .stat:nth-child(2)::before { animation-delay: -4.5s; }
+.stats-bar.anim-ring .stat:nth-child(3)::before { animation-delay: -3s; }
+.stats-bar.anim-ring .stat:nth-child(4)::before { animation-delay: -1.5s; }
+@keyframes ring-travel { to { --ring: 360deg; } }
+@media (prefers-reduced-motion: reduce) {
+  .stats-bar.anim-numbers .counter, .stats-bar.anim-ring .stat::before { animation: none; }
 }
