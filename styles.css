@@ -1978,7 +1978,10 @@ html.js .pledge.is-highlight,
 .reviews-track { display: flex; flex-direction: column; gap: 18px; will-change: transform; }
 .reviews-col-up .reviews-track { animation: reviews-up 70s linear infinite; }
 .reviews-col-down .reviews-track { animation: reviews-down 70s linear infinite; }
-.reviews-wall:hover .reviews-track { animation-play-state: paused; }
+@media (hover: hover) {
+  .reviews-wall:hover .reviews-track { animation-play-state: paused; }
+}
+.reviews-wall.has-open .reviews-track { animation-play-state: paused; }
 @keyframes reviews-up { from { transform: translateY(0); } to { transform: translateY(-50%); } }
 @keyframes reviews-down { from { transform: translateY(-50%); } to { transform: translateY(0); } }
 

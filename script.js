@@ -481,12 +481,28 @@ const AVATARS = ['#0c5a45', '#8fb8a8', '#064b39', '#b9895a', '#1b4f43', '#c9a24a
     });
   };
 
+  const wall = section.querySelector('.reviews-wall');
+  const syncPause = () => wall.classList.toggle('has-open', !!section.querySelector('.review.is-open'));
+  const closeAll = () => {
+    section.querySelectorAll('.review.is-open').forEach((el) => {
+      el.classList.remove('is-open');
+      el.querySelector('.review-more').textContent = labels.more;
+    });
+    syncPause();
+  };
   section.addEventListener('click', (event) => {
     const btn = event.target.closest('.review-more');
     if (!btn) return;
     const el = btn.closest('.review');
     const open = el.classList.toggle('is-open');
     btn.textContent = open ? labels.less : labels.more;
+    syncPause();
+  });
+  // Tactile : toucher en dehors d'une carte referme l'avis déployé et relance le défilement.
+  document.addEventListener('click', (event) => {
+    if (!section.querySelector('.review.is-open')) return;
+    if (event.target.closest('.review')) return;
+    closeAll();
   });
   // La souris quitte la carte : retour au format court.
   section.addEventListener('mouseout', (event) => {
@@ -495,6 +511,7 @@ const AVATARS = ['#0c5a45', '#8fb8a8', '#064b39', '#b9895a', '#1b4f43', '#c9a24a
     if (el.classList.contains('is-open')) {
       el.classList.remove('is-open');
       el.querySelector('.review-more').textContent = labels.more;
+      syncPause();
     }
   });
 
