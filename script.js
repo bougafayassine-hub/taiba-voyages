@@ -10,11 +10,19 @@ if (toggle && panel) {
     panel.hidden = open;
   });
 
-  panel.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', () => {
-      toggle.setAttribute('aria-expanded', 'false');
-      panel.hidden = true;
-    });
+  const close = () => {
+    toggle.setAttribute('aria-expanded', 'false');
+    panel.hidden = true;
+  };
+  panel.querySelectorAll('a').forEach((link) => link.addEventListener('click', close));
+  // Clic en dehors du menu ou touche Échap : le menu se referme.
+  document.addEventListener('click', (event) => {
+    if (panel.hidden) return;
+    if (panel.contains(event.target) || toggle.contains(event.target)) return;
+    close();
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && !panel.hidden) close();
   });
 }
 

@@ -488,13 +488,6 @@ h1 .line-gold {
   }
   .mobile-panel:not([hidden]) { display: grid; gap: 6px; }
   .mobile-panel a { padding: 14px 12px; border-radius: 10px; font-weight: 600; }
-  .mobile-panel .mobile-whatsapp {
-    margin-top: 8px;
-    text-align: center;
-    color: #fff;
-    background: linear-gradient(180deg, #2fd46b 0%, #1fb757 100%);
-    border-radius: 999px;
-  }
 
   .hero {
     min-height: 760px;
@@ -1730,7 +1723,32 @@ html[dir="rtl"] .float-brand strong { font-family: "Tajawal", sans-serif; font-s
 section[id] { scroll-margin-top: calc(var(--nav-h) + 12px); }
 
 /* Badge « Facilités de paiement » cliquable */
-a.pay-badge { cursor: pointer; transition: transform .18s ease, filter .18s ease; }
+a.pay-badge { cursor: pointer; overflow: hidden; transition: transform .18s ease, filter .18s ease; }
+a.pay-badge::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -70%;
+  width: 45%;
+  background: linear-gradient(100deg, transparent 0%, rgba(255,255,255,.55) 50%, transparent 100%);
+  transform: skewX(-18deg);
+  animation: badge-shine 4.5s ease-in-out infinite;
+  pointer-events: none;
+}
+a.pay-badge svg { animation: badge-nudge 4.5s ease-in-out infinite; }
+@keyframes badge-shine {
+  0%, 70% { left: -70%; }
+  90%, 100% { left: 140%; }
+}
+@keyframes badge-nudge {
+  0%, 68%, 100% { transform: translateY(0); }
+  74% { transform: translateY(-2px); }
+  80% { transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  a.pay-badge::after, a.pay-badge svg { animation: none; }
+}
 a.pay-badge:hover { transform: translateY(-1px); filter: brightness(1.04); }
 @media (max-width: 900px) { a.pay-badge:hover { transform: translateX(-50%) translateY(-1px); } }
 
@@ -1773,19 +1791,21 @@ html.js .pledge.is-highlight,
 .v-mix .stats-bar {
   position: static;
   transform: none;
+  margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 0;
 }
 .v-mix .stat {
-  padding: 4px 26px;
+  padding: 4px 30px;
   border-radius: 0;
   background: transparent;
   border: 0;
   box-shadow: none;
   border-inline-start: 1px solid rgba(224,179,62,.55);
 }
-.v-mix .stat:first-child { border-inline-start: 0; }
+.v-mix .stat:first-child { border-inline-start: 0; padding-inline-start: 0; }
+.v-mix .stat:last-child { padding-inline-end: 0; }
 .v-mix .stat .counter { color: var(--green); font-size: 38px; }
 .v-mix .stat-title { color: var(--green); }
 .v-mix + .agency { padding-top: 40px; }
