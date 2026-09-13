@@ -853,7 +853,8 @@ html[dir="rtl"] .lang-btn { letter-spacing: 0; }
   padding-bottom: 18px;
   border-bottom: 1px solid rgba(7,75,57,.10);
 }
-.footer-brand { display: flex; align-items: center; gap: 14px; font-size: 13.5px; color: #4d5552; }
+.footer-brand { display: flex; align-items: flex-end; gap: 14px; font-size: 13.5px; color: #4d5552; }
+.footer-brand span { padding-bottom: 12px; }
 .footer-brand img { width: 110px; height: auto; display: block; }
 .footer-social { display: flex; align-items: center; gap: 10px; }
 .footer-follow { margin-inline-end: 4px; font-size: 12.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #b8891a; }
@@ -870,11 +871,37 @@ html[dir="rtl"] .lang-btn { letter-spacing: 0; }
 }
 .footer-social a svg { width: 20px; height: 20px; }
 .footer-social a:hover { transform: translateY(-2px); background: var(--green); color: #fff; }
-.footer-copy { padding-top: 14px; text-align: center; font-size: 13px; }
+.footer-copy { padding-top: 14px; text-align: center; font-size: 13px; display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 6px 10px; }
+.footer-sep { color: rgba(7,75,57,.35); }
+.credit {
+  position: relative;
+  display: inline-block;
+  font-weight: 700;
+  color: var(--green);
+  padding-bottom: 2px;
+}
+.credit span { position: relative; z-index: 1; }
+.credit::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, transparent 0%, var(--gold) 30%, #f3d270 50%, var(--gold) 70%, transparent 100%);
+  background-size: 200% 100%;
+  animation: credit-sweep 2.8s linear infinite;
+}
+.credit:hover { color: #b8891a; }
+@keyframes credit-sweep { from { background-position: 200% 0; } to { background-position: -200% 0; } }
+@media (prefers-reduced-motion: reduce) { .credit::after { animation: none; background: var(--gold); } }
 html[dir="rtl"] .footer-follow { letter-spacing: 0; }
 @media (max-width: 900px) {
   .footer-inner { flex-direction: column; text-align: center; gap: 16px; }
-  .footer-brand { flex-direction: column; gap: 8px; }
+  .footer-brand { flex-direction: column; align-items: center; gap: 4px; }
+  .footer-brand span { padding-bottom: 0; }
+  .mobile-break { display: inline; }
 }
 
 @media (max-width: 900px) {
@@ -1765,6 +1792,8 @@ html[dir="rtl"] .pledges-copy h2 { font-weight: 300; line-height: 1.3; }
 html[dir="rtl"] .pledges-copy h2 strong { font-weight: 800; }
 html[dir="rtl"] .founder-quote p { font-family: "Tajawal", sans-serif; font-size: 22px; line-height: 1.6; font-weight: 500; }
 html[dir="rtl"] .float-brand strong { font-family: "Tajawal", sans-serif; font-size: 19px; }
+
+.mobile-break { display: none; }
 
 /* ---------- Ancres : laisser la place à l'en-tête fixe ---------- */
 section[id] { scroll-margin-top: calc(var(--nav-h) + 12px); }
