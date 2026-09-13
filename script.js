@@ -204,10 +204,13 @@ document.querySelectorAll('.contact-form[data-whatsapp]').forEach((form) => {
     window.addEventListener('resize', place);
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (!reduce) {
+      // Une carte toutes les 7 secondes, seulement quand les cartes sont visibles.
       timer = setInterval(() => {
         if (Date.now() < pausedUntil || document.hidden) return;
+        const r = bar.getBoundingClientRect();
+        if (r.bottom < 0 || r.top > window.innerHeight) return;
         goTo(index() + 1);
-      }, 4500);
+      }, 7000);
     }
   };
   const stop = () => {
