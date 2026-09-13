@@ -683,7 +683,7 @@ html[dir="rtl"] .lang-btn { letter-spacing: 0; }
   color: #b8891a;
   text-shadow: none;
 }
-.eyebrow-dark span { background: #d6a821; box-shadow: none; }
+.eyebrow-dark span { display: none; }
 
 .section-head h2 {
   margin: 18px 0 12px;
