@@ -399,3 +399,106 @@ document.querySelectorAll('.pay-card').forEach((card) => {
   io.observe(el);
 })();
 
+
+// ---------- Avis Google : deux colonnes qui défilent en sens inverse ----------
+const REVIEWS = [
+  { name: 'hamza', rating: 5, when: '11m', text: 'Excellente expérience avec cette agence ! Six membres de ma famille ont voyagé pour une Omra et tout s’est déroulé parfaitement. Organisation impeccable, communication claire et service irréprochable. Nous recommandons vivement leurs services.' },
+  { name: 'SALMA ARABI', rating: 5, when: '11m', text: 'Excellente agence ! Un service irréprochable, des conseils précis et adaptés, et une organisation parfaite du voyage. Je recommande vivement.' },
+  { name: 'Nada Faragh', rating: 5, when: '2y', text: 'Expérience exceptionnelle avec cette agence de voyage ! Leur équipe dévouée a su créer un itinéraire parfait, alliant découvertes authentiques et confort optimal. Un service client attentif et des souvenirs inoubliables font de cette agence notre choix numéro un pour les prochaines aventures. Merci pour cette expérience mémorable !' },
+  { name: 'Brahim Jawhar', rating: 5, when: '3m', text: 'Je remerci tout le groupe pour l organisation sans faute de l omra' },
+  { name: 'Hajar BenYacoub', rating: 5, when: '1y', text: 'Mes parents ont eu la chance de faire le voyage de leur vie (Omrah) avec l’agence Taiba Voyages et c’était exceptionnel ils étaient plus que satisfaits des différents services et de l’accompagnement et l’encadré ainsi que l’équipe sur place. Un grand merci à Monsieur Kettani Mohamed pour ce merveilleux voyage !' },
+  { name: 'Abderrahmane Ibnelrhazi', rating: 5, when: '2y', text: 'Je suis absolument ravi de mon expérience avec Taiba voyages. Dès le début, leur équipe a été extrêmement professionnelle et attentive à mes besoins et préférences. Ils ont pris en charge chaque détail de mon voyage, ce qui m’a permis de profiter pleinement de mes vacances. je recommande vivement' },
+  { name: 'oumari loubna', rating: 5, when: '11m', text: 'Une agence de voyage professionnelle qui tient a ses promesses .et qui accompagne ses clients jusqu’à leurs retours.omra avec cet agence a faire et a refaire .' },
+  { name: 'Med Ezzaher', rating: 4, when: '2y', text: 'Je partage ma perception vis-à-vis d’une prestation de service en Arabie Saoudite dans un cadre professionnel et spirituel il y a 2 ans, tout s’est bien passé. Aucune réclamation signalée. et Mr Kettani est une personne aimable et coopérante. je n’hésiterai pas à faire appel à ses services dans le futur.' },
+  { name: 'Rais Hamza', rating: 5, when: '11m', text: 'Taiba voyages by kettani est une agence de voyage exceptionnelle, toujours à l’écoute et qui offre des services impeccables' },
+  { name: 'Youssef Bennani', rating: 5, when: '1y', text: 'Une agence pas comme les autres, j’ai eux l’occasion de côtoyer le personnel au sein de l’établissement et aussi pendant un voyage, des gens professionnels avec une grande maitrise du domaine. Je recommande !!' },
+  { name: 'Leila Gharibi', rating: 5, when: '2y', text: 'Agence très sérieuse, des gens réactifs, honnêtes, à la hauteur de leur promesses. Haut niveau de professionnalisme. Je recommande vivement d après mes expériences avec eux.' },
+  { name: 'Blend TV', rating: 5, when: '1y', text: 'Nous avons passe une omra extraordinaire avec lagence taiba, je ne remercierai jamais autant les accompagnateurs de l’agence pour leur aide et assistance. Mille fois merci' },
+  { name: 'Karim Tlemcani', rating: 5, when: '1y', text: 'Ravi de mon expérience OMRA en famille en compagnie de cette agence. Accompagnement au top service parfait rien à dire je recommande vivement.' },
+  { name: 'badr abbassi', rating: 5, when: '2y', text: 'Tres bon service, j’ai offert omra a mes parents ils etaient tres satisfait, tres bon accompagnement, hotels merveilleux je recommande vivement.' },
+  { name: 'Dalam Tech', rating: 5, when: '2y', text: 'Agence de voyage avec un service impeccable,une explication des offres approfondie,et bien-sûr réactivité dans tout ce qu’il font,bravo continuez ainsi...' },
+  { name: 'Aicha IDRISSI KAITOUNI', rating: 5, when: '2y', text: 'Tres bonne agence, jamais déçue, ils sont professionnels et tres bien organisés, je recommande vivement 👍' },
+  { name: 'Ismail Benchaaboune', rating: 5, when: '2y', text: 'La meilleure agence sur Fès à des pas d’avance sur leurs concurrents , Monsieur Hamid est l’incarnation de la gentillesse , il est très serviable aussi , je recommande vivement' },
+  { name: 'el mousalame zineb', rating: 5, when: '1y', text: 'Meilleure compagnie tbarkellah. Agence bien organisée un très bon service. Je vous souhaite beaucoup de succés et réussite' },
+  { name: 'Ghita Andaloussi', rating: 5, when: '1y', text: 'Très satisfaite des prestations de l’agence de voyage Taiba voyages by kettani, Excellent service, je la recommande vivement' },
+];
+const WHEN = {
+  fr: { '2w': 'il y a 2 semaines', '3m': 'il y a 3 mois', '11m': 'il y a 11 mois', '1y': 'il y a un an', '2y': 'il y a 2 ans' },
+  ar: { '2w': 'منذ أسبوعين', '3m': 'منذ 3 أشهر', '11m': 'منذ 11 شهرًا', '1y': 'منذ سنة', '2y': 'منذ سنتين' },
+};
+const AVATARS = ['#0c5a45', '#8fb8a8', '#064b39', '#b9895a', '#1b4f43', '#c9a24a'];
+
+(() => {
+  const section = document.querySelector('#avis');
+  if (!section) return;
+  const lang = section.dataset.lang === 'ar' ? 'ar' : 'fr';
+  const labels = { google: section.dataset.labelGoogle, more: section.dataset.labelMore, less: section.dataset.labelLess };
+  const colUp = section.querySelector('.reviews-col-up');
+  const colDown = section.querySelector('.reviews-col-down');
+  const mobile = window.matchMedia('(max-width: 900px)');
+  const stars = (n) => '★'.repeat(n) + '☆'.repeat(5 - n);
+
+  const card = (r, i) => {
+    const el = document.createElement('article');
+    el.className = 'review';
+    el.setAttribute('lang', 'fr');
+    el.setAttribute('dir', 'ltr');
+    el.innerHTML = `
+      <header class="review-head">
+        <span class="review-avatar" style="background:${AVATARS[i % AVATARS.length]}">${r.name.trim().charAt(0).toUpperCase()}</span>
+        <span class="review-who"><strong>${r.name}</strong><small>${labels.google} · ${WHEN[lang][r.when] || ''}</small></span>
+      </header>
+      <span class="review-stars" aria-label="${r.rating}/5">${stars(r.rating)}</span>
+      <p class="review-text">${r.text}</p>
+      <button class="review-more" type="button" hidden>${labels.more}</button>`;
+    return el;
+  };
+
+  const fill = (col, items, offset) => {
+    col.innerHTML = '';
+    const track = document.createElement('div');
+    track.className = 'reviews-track';
+    // Contenu doublé pour une boucle sans couture.
+    [...items, ...items].forEach((r, i) => track.appendChild(card(r, (i + offset) % REVIEWS.length)));
+    col.appendChild(track);
+  };
+
+  const build = () => {
+    if (mobile.matches) {
+      fill(colUp, REVIEWS, 0);
+      colDown.innerHTML = '';
+    } else {
+      const a = REVIEWS.filter((_, i) => i % 2 === 0);
+      const b = REVIEWS.filter((_, i) => i % 2 === 1);
+      fill(colUp, a, 0);
+      fill(colDown, b, 1);
+    }
+    // « Lire plus » seulement si le texte est coupé.
+    section.querySelectorAll('.review').forEach((el) => {
+      const text = el.querySelector('.review-text');
+      const btn = el.querySelector('.review-more');
+      btn.hidden = !(text.scrollHeight > text.clientHeight + 2);
+    });
+  };
+
+  section.addEventListener('click', (event) => {
+    const btn = event.target.closest('.review-more');
+    if (!btn) return;
+    const el = btn.closest('.review');
+    const open = el.classList.toggle('is-open');
+    btn.textContent = open ? labels.less : labels.more;
+  });
+  // La souris quitte la carte : retour au format court.
+  section.addEventListener('mouseout', (event) => {
+    const el = event.target.closest('.review');
+    if (!el || el.contains(event.relatedTarget)) return;
+    if (el.classList.contains('is-open')) {
+      el.classList.remove('is-open');
+      el.querySelector('.review-more').textContent = labels.more;
+    }
+  });
+
+  build();
+  mobile.addEventListener('change', build);
+  window.addEventListener('load', build);
+})();
