@@ -169,18 +169,20 @@ document.querySelectorAll('.contact-form[data-whatsapp]').forEach((form) => {
     if (row.classList.contains('is-in')) return;
     const now = performance.now();
     if (now - batchStart > 800) { batchStart = now; batchCount = 0; }
-    row.style.transitionDelay = `${batchCount * 450}ms`;
+    row.style.transitionDelay = `${batchCount * 550}ms`;
     batchCount += 1;
     row.classList.add('is-in');
   };
   if (!mobile.matches || !('IntersectionObserver' in window)) { rows.forEach(show); return; }
   const io = new IntersectionObserver((entries) => {
-    entries.forEach((e) => { if (e.isIntersecting) { show(e.target); io.unobserve(e.target); } });
-  }, { threshold: 0.7 });
+    entries.forEach((e) => { if (e.isIntersecting) { const r = e.target.getBoundingClientRect(); if (r.top < window.innerHeight * 0.78) { show(e.target); io.unobserve(e.target); } } });
+  }, { threshold: 0.05 });
   rows.forEach((r) => io.observe(r));
+  // Déclenchement principal sur la position verticale : les cartes partent décalées
+  // sur les côtés, donc leur visibilité horizontale ne compte pas.
   const check = () => rows.forEach((r) => {
     const b = r.getBoundingClientRect();
-    if (b.top < window.innerHeight * 0.72 && b.bottom > 0) show(r);
+    if (b.top < window.innerHeight * 0.78 && b.bottom > 0) show(r);
   });
   window.addEventListener('scroll', check, { passive: true });
   check();
