@@ -2102,3 +2102,23 @@ html[dir="rtl"] .review-who small { direction: rtl; unicode-bidi: isolate; }
   .reviews-wall { height: auto; -webkit-mask-image: none; mask-image: none; }
   .reviews-col { overflow: visible; }
 }
+
+/* ---------- Arabe : le texte des boutons avec icône est recalé sur l'icône ---------- */
+html[dir="rtl"] .contact-cta > span,
+html[dir="rtl"] .ghost-cta > span,
+html[dir="rtl"] .vip-cta > span,
+html[dir="rtl"] .form-submit > span,
+html[dir="rtl"] .payment-cta > span,
+html[dir="rtl"] .pledge-link,
+html[dir="rtl"] .pack-cta,
+html[dir="rtl"] .pay-badge > span,
+html[dir="rtl"] .google-count,
+html[dir="rtl"] .location-info li > a,
+html[dir="rtl"] .location-info li > span,
+html[dir="rtl"] .footer-follow,
+html[dir="rtl"] .lang-label {
+  line-height: 1;
+  position: relative;
+  top: 3px;
+}
+html[dir="rtl"] .ghost-number { top: 0; }
