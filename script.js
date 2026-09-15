@@ -41,6 +41,15 @@ if (heroVideo) {
   document.addEventListener('visibilitychange', () => {
     if (!document.hidden) tryPlay();
   });
+  // Téléphone en mode économie d'énergie : la lecture automatique est bloquée,
+  // on relance au premier toucher si la vidéo n'a pas démarré.
+  const kick = () => {
+    if (heroVideo.paused && !heroVideo.ended && heroVideo.currentTime < 0.2) tryPlay();
+    document.removeEventListener('touchstart', kick);
+    document.removeEventListener('click', kick);
+  };
+  document.addEventListener('touchstart', kick, { passive: true });
+  document.addEventListener('click', kick);
 }
 
 // Compteurs animés de la barre de chiffres clés.
