@@ -1832,15 +1832,23 @@ a.pay-badge:hover { transform: translateY(-1px); filter: brightness(1.04); }
 .pledge-link {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  margin-top: 16px;
+  gap: 8px;
+  margin-top: 18px;
+  height: 40px;
+  padding: 0 18px 0 16px;
+  border-radius: 999px;
   font-size: 13.5px;
   font-weight: 700;
-  color: #b8891a;
+  color: #2a2107;
+  background: linear-gradient(180deg, #f0c552 0%, #d9a11f 100%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.4), 0 6px 16px rgba(151,105,10,.18);
+  transition: transform .18s ease, filter .18s ease;
 }
-.pledge-link::after { content: "→"; }
+.pledge-link::after { content: "→"; transition: transform .18s ease; }
 html[dir="rtl"] .pledge-link::after { content: "←"; }
-.pledge-link:hover { text-decoration: underline; }
+.pledge-link:hover { transform: translateY(-1px); filter: brightness(1.04); }
+.pledge-link:hover::after { transform: translateX(3px); }
+html[dir="rtl"] .pledge-link:hover::after { transform: translateX(-3px); }
 html.js .pledge.is-highlight,
 .pledge.is-highlight {
   transform: translateY(-6px);
