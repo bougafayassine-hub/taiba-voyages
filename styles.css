@@ -1894,7 +1894,7 @@ html.js .pledge.is-highlight,
 .v-mix .stat:last-child { padding-inline-end: 0; }
 .v-mix .stats-bar { grid-template-columns: repeat(4, minmax(0, 1fr)); justify-items: stretch; }
 .v-mix .stat .counter { color: var(--green); font-size: 38px; }
-.v-mix .stat-title { color: var(--green); }
+.v-mix .stat-title { color: var(--green); font-size: 13.5px; }
 .v-mix + .agency { padding-top: 40px; }
 
 @media (max-width: 900px) {
