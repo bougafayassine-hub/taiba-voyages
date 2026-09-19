@@ -537,12 +537,12 @@ const AVATARS = ['#0c5a45', '#8fb8a8', '#064b39', '#b9895a', '#1b4f43', '#c9a24a
   if (!section) return;
   const lang = section.dataset.lang === 'ar' ? 'ar' : 'fr';
   const L = {
-    fr: { direct: 'Vol direct', indirect: 'Vol indirect', cheaper: 'moins cher', days: 'jours', avg: 'Prix moyen', per: 'par personne', dep: 'Départ', ret: 'Retour' },
-    ar: { direct: 'رحلة مباشرة', indirect: 'رحلة غير مباشرة', cheaper: 'أرخص', days: 'يومًا', avg: 'متوسط السعر', per: 'للشخص الواحد', dep: 'المغادرة', ret: 'العودة' },
+    fr: { direct: 'Vol direct', indirect: 'Vol indirect', cheaper: 'moins cher', days: 'jours', avg: 'Prix moyen', per: 'par personne', dep: 'Départ', ret: 'Retour', show: 'Voir les dates de départ', hide: 'Masquer les dates', prev: 'Mois précédent', next: 'Mois suivant' },
+    ar: { direct: 'رحلة مباشرة', indirect: 'رحلة غير مباشرة', cheaper: 'أرخص', days: 'يومًا', avg: 'متوسط السعر', per: 'للشخص الواحد', dep: 'المغادرة', ret: 'العودة', show: 'عرض تواريخ المغادرة', hide: 'إخفاء التواريخ', prev: 'الشهر السابق', next: 'الشهر التالي' },
   }[lang];
   const CUR = lang === 'ar' ? 'درهم' : 'DH';
-  // Provisoire : 4 départs par mois sur trois mois, à remplacer par les vraies dates.
-  const MONTHS = [[2026, 9], [2026, 10], [2026, 11]];
+  // Provisoire : 4 départs par mois d'octobre 2026 à février 2027, à remplacer par les vraies dates.
+  const MONTHS = [[2026, 9], [2026, 10], [2026, 11], [2027, 0], [2027, 1]];
   const DAYS = [3, 10, 17, 24];
   const FLIGHTS = {
     direct: { range: '10–15', duration: 12, extra: 1800 },
@@ -550,7 +550,7 @@ const AVATARS = ['#0c5a45', '#8fb8a8', '#064b39', '#b9895a', '#1b4f43', '#c9a24a
   };
   const loc = lang === 'ar' ? 'ar-MA-u-nu-latn' : 'fr-FR';
   const fmtDay = new Intl.DateTimeFormat(loc, { day: '2-digit', month: 'short' });
-  const fmtMonth = new Intl.DateTimeFormat(loc, { month: 'long' });
+  const fmtMonth = new Intl.DateTimeFormat(loc, { month: 'long', year: 'numeric' });
   const fmtNum = (n) => new Intl.NumberFormat('fr-FR').format(n).replace(/[\u202f\u00a0]/g, ' ');
 
   const rows = (type, mi) => {
@@ -568,34 +568,43 @@ const AVATARS = ['#0c5a45', '#8fb8a8', '#064b39', '#b9895a', '#1b4f43', '#c9a24a
     const base = Number((pack.querySelector('.pack-price .num')?.textContent || '0').replace(/\D/g, ''));
     const cta = pack.querySelector('.pack-cta');
     const baseHref = cta ? cta.getAttribute('href') : '';
-    const state = { type: 'indirect', month: 0 };
+    const state = { open: false, type: 'indirect', month: 0 };
 
     const render = () => {
       const f = FLIGHTS[state.type];
+      const [y, m] = MONTHS[state.month];
+      host.classList.toggle('is-open', state.open);
       host.innerHTML = `
-        <div class="flight-tabs" role="tablist">
-          <button type="button" role="tab" data-type="direct" aria-selected="${state.type === 'direct'}">${L.direct}</button>
-          <button type="button" role="tab" data-type="indirect" aria-selected="${state.type === 'indirect'}">${L.indirect}<em>${L.cheaper}</em></button>
-        </div>
-        <div class="flight-meta">
-          <span><b dir="ltr">${f.range}</b> ${L.days}</span>
-          <span>${L.avg} <b><span class="num" dir="ltr">${fmtNum(base + f.extra)}</span> ${CUR}</b> <small>${L.per}</small></span>
-        </div>
-        <div class="flight-months" role="tablist">
-          ${MONTHS.map(([y, m], i) => `<button type="button" data-month="${i}" aria-selected="${state.month === i}">${fmtMonth.format(new Date(y, m, 1))}</button>`).join('')}
-        </div>
-        <ul class="flight-dates">${rows(state.type, state.month)}</ul>`;
-      if (cta) {
-        const [y, m] = MONTHS[state.month];
-        cta.setAttribute('href', baseHref + encodeURIComponent(` (${L[state.type]}, ${fmtMonth.format(new Date(y, m, 1))})`));
-      }
+        <button type="button" class="flights-toggle" aria-expanded="${state.open}">
+          <span>${state.open ? L.hide : L.show}</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="flights-body" ${state.open ? '' : 'hidden'}>
+          <div class="flight-tabs" role="tablist">
+            <button type="button" role="tab" data-type="direct" aria-selected="${state.type === 'direct'}">${L.direct}</button>
+            <button type="button" role="tab" data-type="indirect" aria-selected="${state.type === 'indirect'}">${L.indirect}<em>${L.cheaper}</em></button>
+          </div>
+          <div class="flight-meta">
+            <span><b dir="ltr">${f.range}</b> ${L.days}</span>
+            <span>${L.avg} <b><span class="num" dir="ltr">${fmtNum(base + f.extra)}</span> ${CUR}</b> <small>${L.per}</small></span>
+          </div>
+          <div class="flight-month-nav">
+            <button type="button" data-step="-1" aria-label="${L.prev}" ${state.month === 0 ? 'disabled' : ''}><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m15 6-6 6 6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <span class="flight-month">${fmtMonth.format(new Date(y, m, 1))}</span>
+            <button type="button" data-step="1" aria-label="${L.next}" ${state.month === MONTHS.length - 1 ? 'disabled' : ''}><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 6 6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          </div>
+          <ul class="flight-dates">${rows(state.type, state.month)}</ul>
+        </div>`;
+      if (cta) cta.setAttribute('href', baseHref + encodeURIComponent(` (${L[state.type]}, ${fmtMonth.format(new Date(y, m, 1))})`));
     };
     host.addEventListener('click', (e) => {
+      const tg = e.target.closest('.flights-toggle');
       const t = e.target.closest('[data-type]');
-      const mo = e.target.closest('[data-month]');
+      const st = e.target.closest('[data-step]');
+      if (tg) state.open = !state.open;
       if (t) state.type = t.dataset.type;
-      if (mo) state.month = Number(mo.dataset.month);
-      if (t || mo) render();
+      if (st && !st.disabled) state.month = Math.min(MONTHS.length - 1, Math.max(0, state.month + Number(st.dataset.step)));
+      if (tg || t || st) render();
     });
     render();
   });

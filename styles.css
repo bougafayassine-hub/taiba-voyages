@@ -1422,6 +1422,7 @@ html.js .pledge.is-done:hover { transform: translateY(-6px); }
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 18px;
+  align-items: start;
 }
 .pack {
   display: flex;
@@ -2124,7 +2125,29 @@ html[dir="rtl"] .lang-label {
 html[dir="rtl"] .ghost-number { top: 0; }
 
 /* ---------- Formules : vol direct / indirect et dates ---------- */
-.pack-flights { padding: 4px 22px 16px; display: grid; gap: 10px; }
+.pack-flights { padding: 2px 22px 14px; display: grid; gap: 10px; }
+.flights-toggle {
+  height: 40px;
+  padding: 0 14px;
+  border: 1px solid rgba(7,75,57,.18);
+  border-radius: 999px;
+  background: #fff;
+  font: inherit;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--green);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background .18s ease, border-color .18s ease;
+}
+.flights-toggle:hover { background: #f4f8f6; border-color: var(--green); }
+.flights-toggle svg { transition: transform .25s ease; }
+.pack-flights.is-open .flights-toggle svg { transform: rotate(180deg); }
+.flights-body { display: grid; gap: 10px; }
+.flights-body[hidden] { display: none; }
 .flight-tabs { display: grid; grid-template-columns: 1fr 1fr; padding: 3px; border-radius: 999px; background: #f1ece0; }
 .flight-tabs button {
   height: 34px; border: 0; border-radius: 999px; background: transparent; padding: 0 6px;
@@ -2139,12 +2162,15 @@ html[dir="rtl"] .ghost-number { top: 0; }
 .flight-meta > span:first-child { white-space: nowrap; }
 .flight-meta b { color: var(--green); font-weight: 700; }
 .flight-meta small { font-size: 11px; color: #6b7673; }
-.flight-months { display: flex; gap: 6px; }
-.flight-months button {
-  flex: 1; height: 28px; border: 1px solid rgba(7,75,57,.14); border-radius: 999px; background: #fff;
-  font: inherit; font-size: 12px; font-weight: 600; color: #2c3835; cursor: pointer; text-transform: capitalize;
+.flight-month-nav { display: grid; grid-template-columns: 32px 1fr 32px; align-items: center; gap: 6px; }
+.flight-month-nav button {
+  width: 32px; height: 32px; border: 1px solid rgba(7,75,57,.14); border-radius: 50%; background: #fff;
+  color: var(--green); cursor: pointer; display: grid; place-items: center;
 }
-.flight-months button[aria-selected="true"] { background: var(--gold); border-color: var(--gold); color: #2a2107; }
+.flight-month-nav button:hover:not(:disabled) { background: var(--gold); border-color: var(--gold); color: #2a2107; }
+.flight-month-nav button:disabled { opacity: .3; cursor: default; }
+.flight-month { text-align: center; font-size: 13px; font-weight: 700; color: var(--ink); text-transform: capitalize; }
+html[dir="rtl"] .flight-month-nav button svg { transform: scaleX(-1); }
 .flight-dates { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
 .flight-dates li {
   display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 8px;
@@ -2155,4 +2181,4 @@ html[dir="rtl"] .ghost-number { top: 0; }
 .flight-dates li i { font-style: normal; color: #b8891a; }
 .flight-dates li span:last-child { text-align: end; }
 html[dir="rtl"] .flight-dates li i { transform: scaleX(-1); display: inline-block; }
-html[dir="rtl"] .flight-tabs button, html[dir="rtl"] .flight-months button { letter-spacing: 0; }
+html[dir="rtl"] .flight-tabs button, html[dir="rtl"] .flight-month { letter-spacing: 0; }
