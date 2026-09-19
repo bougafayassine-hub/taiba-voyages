@@ -11,7 +11,7 @@
 
 * { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; background: #fffefa; }
 
 body {
   margin: 0;
@@ -61,7 +61,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
   justify-self: center;
   display: flex;
   align-items: center;
-  gap: 34px;
+  gap: 28px;
   white-space: nowrap;
 }
 
@@ -1896,6 +1896,7 @@ html.js .pledge.is-highlight,
 .v-mix .stats-bar { grid-template-columns: repeat(4, minmax(0, 1fr)); justify-items: stretch; }
 .v-mix .stat .counter { color: var(--green); font-size: 38px; }
 .v-mix .stat-title { color: var(--green); font-size: 13.5px; }
+.counter .ord { font-size: .5em; vertical-align: .55em; letter-spacing: 0; font-weight: 700; }
 .v-mix + .agency { padding-top: 40px; }
 
 @media (max-width: 900px) {
