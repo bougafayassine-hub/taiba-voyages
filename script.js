@@ -530,3 +530,73 @@ const AVATARS = ['#0c5a45', '#8fb8a8', '#064b39', '#b9895a', '#1b4f43', '#c9a24a
   mobile.addEventListener('change', build);
   window.addEventListener('load', build);
 })();
+
+// ---------- Formules : vol direct / indirect, dates de départ et prix moyen ----------
+(() => {
+  const section = document.querySelector('#packs');
+  if (!section) return;
+  const lang = section.dataset.lang === 'ar' ? 'ar' : 'fr';
+  const L = {
+    fr: { direct: 'Vol direct', indirect: 'Vol indirect', cheaper: 'moins cher', days: 'jours', avg: 'Prix moyen', per: 'par personne', dep: 'Départ', ret: 'Retour' },
+    ar: { direct: 'رحلة مباشرة', indirect: 'رحلة غير مباشرة', cheaper: 'أرخص', days: 'يومًا', avg: 'متوسط السعر', per: 'للشخص الواحد', dep: 'المغادرة', ret: 'العودة' },
+  }[lang];
+  const CUR = lang === 'ar' ? 'درهم' : 'DH';
+  // Provisoire : 4 départs par mois sur trois mois, à remplacer par les vraies dates.
+  const MONTHS = [[2026, 9], [2026, 10], [2026, 11]];
+  const DAYS = [3, 10, 17, 24];
+  const FLIGHTS = {
+    direct: { range: '10–15', duration: 12, extra: 1800 },
+    indirect: { range: '11–15', duration: 13, extra: 0 },
+  };
+  const loc = lang === 'ar' ? 'ar-MA-u-nu-latn' : 'fr-FR';
+  const fmtDay = new Intl.DateTimeFormat(loc, { day: '2-digit', month: 'short' });
+  const fmtMonth = new Intl.DateTimeFormat(loc, { month: 'long' });
+  const fmtNum = (n) => new Intl.NumberFormat('fr-FR').format(n).replace(/[\u202f\u00a0]/g, ' ');
+
+  const rows = (type, mi) => {
+    const [y, m] = MONTHS[mi];
+    return DAYS.map((d) => {
+      const dep = new Date(y, m, d);
+      const ret = new Date(y, m, d + FLIGHTS[type].duration);
+      return `<li><span>${L.dep} <b dir="ltr">${fmtDay.format(dep)}</b></span><i aria-hidden="true">→</i><span>${L.ret} <b dir="ltr">${fmtDay.format(ret)}</b></span></li>`;
+    }).join('');
+  };
+
+  section.querySelectorAll('.pack').forEach((pack) => {
+    const host = pack.querySelector('.pack-flights');
+    if (!host) return;
+    const base = Number((pack.querySelector('.pack-price .num')?.textContent || '0').replace(/\D/g, ''));
+    const cta = pack.querySelector('.pack-cta');
+    const baseHref = cta ? cta.getAttribute('href') : '';
+    const state = { type: 'indirect', month: 0 };
+
+    const render = () => {
+      const f = FLIGHTS[state.type];
+      host.innerHTML = `
+        <div class="flight-tabs" role="tablist">
+          <button type="button" role="tab" data-type="direct" aria-selected="${state.type === 'direct'}">${L.direct}</button>
+          <button type="button" role="tab" data-type="indirect" aria-selected="${state.type === 'indirect'}">${L.indirect}<em>${L.cheaper}</em></button>
+        </div>
+        <div class="flight-meta">
+          <span><b dir="ltr">${f.range}</b> ${L.days}</span>
+          <span>${L.avg} <b><span class="num" dir="ltr">${fmtNum(base + f.extra)}</span> ${CUR}</b> <small>${L.per}</small></span>
+        </div>
+        <div class="flight-months" role="tablist">
+          ${MONTHS.map(([y, m], i) => `<button type="button" data-month="${i}" aria-selected="${state.month === i}">${fmtMonth.format(new Date(y, m, 1))}</button>`).join('')}
+        </div>
+        <ul class="flight-dates">${rows(state.type, state.month)}</ul>`;
+      if (cta) {
+        const [y, m] = MONTHS[state.month];
+        cta.setAttribute('href', baseHref + encodeURIComponent(` (${L[state.type]}, ${fmtMonth.format(new Date(y, m, 1))})`));
+      }
+    };
+    host.addEventListener('click', (e) => {
+      const t = e.target.closest('[data-type]');
+      const mo = e.target.closest('[data-month]');
+      if (t) state.type = t.dataset.type;
+      if (mo) state.month = Number(mo.dataset.month);
+      if (t || mo) render();
+    });
+    render();
+  });
+})();
