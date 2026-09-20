@@ -1836,7 +1836,7 @@ a.pay-badge:hover { transform: translateY(-1px); filter: brightness(1.04); }
   gap: 8px;
   margin-top: 18px;
   height: 40px;
-  padding: 0 18px 0 16px;
+  padding: 0 18px;
   border-radius: 999px;
   font-size: 13.5px;
   font-weight: 700;
@@ -1845,11 +1845,9 @@ a.pay-badge:hover { transform: translateY(-1px); filter: brightness(1.04); }
   box-shadow: inset 0 1px 0 rgba(255,255,255,.4), 0 6px 16px rgba(151,105,10,.18);
   transition: transform .18s ease, filter .18s ease;
 }
-.pledge-link::after { content: "→"; transition: transform .18s ease; }
-html[dir="rtl"] .pledge-link::after { content: "←"; }
+
 .pledge-link:hover { transform: translateY(-1px); filter: brightness(1.04); }
-.pledge-link:hover::after { transform: translateX(3px); }
-html[dir="rtl"] .pledge-link:hover::after { transform: translateX(-3px); }
+
 html.js .pledge.is-highlight,
 .pledge.is-highlight {
   transform: translateY(-6px);
@@ -2194,3 +2192,56 @@ html[dir="rtl"] .flight-month-nav button svg { transform: scaleX(-1); }
 .flight-dates li span:last-child { text-align: end; }
 html[dir="rtl"] .flight-dates li i { transform: scaleX(-1); display: inline-block; }
 html[dir="rtl"] .flight-tabs button, html[dir="rtl"] .flight-month { letter-spacing: 0; }
+
+/* ---------- Partenaires primés (section agence) ---------- */
+.partners {
+  position: relative;
+  margin: 18px 0 0;
+  padding: 14px 0;
+  border-top: 1px solid rgba(224,179,62,.45);
+  border-bottom: 1px solid rgba(224,179,62,.45);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.partners::after {
+  content: "";
+  position: absolute;
+  top: -1px;
+  height: 1px;
+  width: 38%;
+  background: linear-gradient(90deg, transparent, #e6bd4a, transparent);
+  animation: partners-sweep 4s ease-in-out infinite;
+}
+@keyframes partners-sweep {
+  0% { inset-inline-start: 0; opacity: 0; }
+  15% { opacity: 1; }
+  85% { opacity: 1; }
+  100% { inset-inline-start: 62%; opacity: 0; }
+}
+.partners-pill {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 12px 0 9px;
+  border-radius: 999px;
+  color: #2a2107;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  white-space: nowrap;
+  background: linear-gradient(180deg, #f6d66c, #e0b33e);
+  box-shadow: 0 0 0 0 rgba(224,179,62,.35);
+  animation: partners-breathe 3.6s ease-in-out infinite;
+}
+@keyframes partners-breathe { 50% { box-shadow: 0 0 0 7px rgba(224,179,62,0); } }
+.partners p { margin: 0; font-size: 15px; line-height: 1.5; color: #1f2b28; font-weight: 500; }
+.partners p b { color: var(--green); font-weight: 800; }
+html[dir="rtl"] .partners-pill { letter-spacing: 0; padding: 0 9px 0 12px; direction: ltr; }
+@media (max-width: 900px) {
+  .partners { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .agency-copy > .partners { order: 3; margin: 0; }
+}
+@media (prefers-reduced-motion: reduce) { .partners::after, .partners-pill { animation: none; } }
