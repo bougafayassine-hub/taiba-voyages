@@ -1751,7 +1751,15 @@ html[dir="rtl"] .pay-split strong { unicode-bidi: isolate; }
 
 }
 @media (max-width: 560px) {
-  .pledge-grid, .pack-grid { grid-template-columns: 1fr; }
+  .pack-grid { grid-template-columns: 1fr; }
+  /* Engagements : grille 2 × 2 compacte sur téléphone */
+  .pledge-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .pledge { padding: 16px 14px 16px; border-radius: 16px; }
+  .pledge-icon { width: 36px; height: 36px; }
+  .pledge-icon svg { width: 20px; height: 20px; }
+  .pledge h3 { margin: 12px 0 6px; font-size: 15px; line-height: 1.15; }
+  .pledge p { font-size: 12.5px; line-height: 1.45; }
+  .pledge-link { margin-top: 12px; height: 34px; padding: 0 12px; font-size: 12.5px; width: 100%; justify-content: center; }
 }
 
 /* ---------- Titres : Plus Jakarta Sans, partie légère puis partie grasse ---------- */
