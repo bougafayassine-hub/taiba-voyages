@@ -2138,7 +2138,7 @@ html[dir="rtl"] .footer-follow,
 html[dir="rtl"] .lang-label {
   line-height: 1;
   position: relative;
-  top: 3px;
+  top: 0;
 }
 html[dir="rtl"] .ghost-number { top: 0; }
 
@@ -2252,3 +2252,9 @@ html[dir="rtl"] .partners-pill { letter-spacing: 0; padding: 0 9px 0 12px; direc
   .agency-copy > .partners { order: 3; margin: 0; }
 }
 @media (prefers-reduced-motion: reduce) { .partners::after, .partners-pill { animation: none; } }
+
+/* Arabe : combiné téléphone retourné pour suivre le sens de lecture */
+html[dir="rtl"] .ghost-cta[href^="tel:"] svg,
+html[dir="rtl"] .location-info li:has(> a[href^="tel:"]) > svg {
+  transform: scaleX(-1);
+}
