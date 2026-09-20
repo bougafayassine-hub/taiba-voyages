@@ -617,6 +617,7 @@ html[dir="rtl"] .mobile-panel a { text-align: right; }
 html[dir="rtl"] .stats-bar { direction: rtl; }
 html[dir="rtl"] .stat .counter { text-align: right; }
 html[dir="rtl"] .google-count { direction: rtl; unicode-bidi: isolate; }
+html[dir="rtl"] .google-badge { align-items: center; }
 
 /* Chiffres, note Google et nom latin : toujours de gauche à droite. */
 .counter,
@@ -2123,7 +2124,14 @@ html[dir="rtl"] .payment-cta > span,
 html[dir="rtl"] .pledge-link,
 html[dir="rtl"] .pack-cta,
 html[dir="rtl"] .pay-badge > span,
+html[dir="rtl"] .google-score,
 html[dir="rtl"] .google-count,
+html[dir="rtl"] .reviews-note strong,
+html[dir="rtl"] .reviews-score-text small,
+html[dir="rtl"] .partners-pill,
+html[dir="rtl"] .flights-toggle > span,
+html[dir="rtl"] .flight-tabs button,
+html[dir="rtl"] .flight-month,
 html[dir="rtl"] .location-info li > a,
 html[dir="rtl"] .location-info li > span,
 html[dir="rtl"] .footer-follow,
