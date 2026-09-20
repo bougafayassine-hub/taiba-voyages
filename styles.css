@@ -2170,9 +2170,9 @@ html[dir="rtl"] .ghost-number { top: 0; }
 .flights-toggle {
   height: 40px;
   padding: 0 14px;
-  border: 1px solid rgba(7,75,57,.18);
+  border: 1px solid transparent;
   border-radius: 999px;
-  background: #fff;
+  background: #f7e8c8;
   font: inherit;
   font-size: 13.5px;
   font-weight: 700;
@@ -2181,10 +2181,11 @@ html[dir="rtl"] .ghost-number { top: 0; }
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  transition: background .18s ease, border-color .18s ease;
+  gap: 9px;
+  transition: background .18s ease;
 }
-.flights-toggle:hover { background: #f4f8f6; border-color: var(--green); }
+.flights-toggle:hover { background: #f2dfb6; }
+.flights-cal { flex: 0 0 auto; }
 .flights-toggle svg { transition: transform .25s ease; }
 .pack-flights.is-open .flights-toggle svg { transform: rotate(180deg); }
 .flights-body { display: grid; gap: 10px; }

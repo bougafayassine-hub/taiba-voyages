@@ -537,8 +537,8 @@ const AVATARS = ['#0c5a45', '#8fb8a8', '#064b39', '#b9895a', '#1b4f43', '#c9a24a
   if (!section) return;
   const lang = section.dataset.lang === 'ar' ? 'ar' : 'fr';
   const L = {
-    fr: { direct: 'Vol direct', indirect: 'Vol indirect', cheaper: 'moins cher', duration: 'Durée :', days: 'jours', avg: 'Prix moyen', per: 'par personne', dep: 'Départ', ret: 'Retour', show: 'Voir les dates de départ', hide: 'Masquer les dates', prev: 'Mois précédent', next: 'Mois suivant' },
-    ar: { direct: 'رحلة مباشرة', indirect: 'رحلة غير مباشرة', cheaper: 'أرخص', duration: 'المدة:', days: 'يومًا', avg: 'متوسط السعر', per: 'للشخص الواحد', dep: 'المغادرة', ret: 'العودة', show: 'عرض تواريخ المغادرة', hide: 'إخفاء التواريخ', prev: 'الشهر السابق', next: 'الشهر التالي' },
+    fr: { direct: 'Vol direct', indirect: 'Vol indirect', cheaper: 'moins cher', duration: 'Durée :', days: 'jours', avg: 'Prix moyen', per: 'par personne', dep: 'Départ', ret: 'Retour', show: (n) => `Voir les ${n} dates de départ`, hide: 'Masquer les dates', prev: 'Mois précédent', next: 'Mois suivant' },
+    ar: { direct: 'رحلة مباشرة', indirect: 'رحلة غير مباشرة', cheaper: 'أرخص', duration: 'المدة:', days: 'يومًا', avg: 'متوسط السعر', per: 'للشخص الواحد', dep: 'المغادرة', ret: 'العودة', show: (n) => `عرض ${n} تاريخ مغادرة`, hide: 'إخفاء التواريخ', prev: 'الشهر السابق', next: 'الشهر التالي' },
   }[lang];
   const CUR = lang === 'ar' ? 'درهم' : 'DH';
   // Provisoire : 4 départs par mois d'octobre 2026 à février 2027, à remplacer par les vraies dates.
@@ -576,7 +576,8 @@ const AVATARS = ['#0c5a45', '#8fb8a8', '#064b39', '#b9895a', '#1b4f43', '#c9a24a
       host.classList.toggle('is-open', state.open);
       host.innerHTML = `
         <button type="button" class="flights-toggle" aria-expanded="${state.open}">
-          <span>${state.open ? L.hide : L.show}</span>
+          <svg class="flights-cal" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+          <span>${state.open ? L.hide : L.show(MONTHS.length * DAYS.length)}</span>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
         <div class="flights-body" ${state.open ? '' : 'hidden'}>
