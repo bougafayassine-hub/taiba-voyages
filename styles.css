@@ -1752,14 +1752,21 @@ html[dir="rtl"] .pay-split strong { unicode-bidi: isolate; }
 }
 @media (max-width: 560px) {
   .pack-grid { grid-template-columns: 1fr; }
-  /* Engagements : grille 2 × 2 compacte sur téléphone */
-  .pledge-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
-  .pledge { padding: 16px 14px 16px; border-radius: 16px; }
-  .pledge-icon { width: 36px; height: 36px; }
-  .pledge-icon svg { width: 20px; height: 20px; }
-  .pledge h3 { margin: 12px 0 6px; font-size: 15px; line-height: 1.15; }
-  .pledge p { font-size: 12.5px; line-height: 1.45; }
-  .pledge-link { margin-top: 12px; height: 34px; padding: 0 12px; font-size: 12.5px; width: 100%; justify-content: center; }
+  /* Engagements : une colonne, cartes très compactes (icône et titre sur une ligne) */
+  .pledge-grid { grid-template-columns: 1fr; gap: 8px; }
+  .pledge {
+    display: grid;
+    grid-template-columns: 34px 1fr;
+    column-gap: 10px;
+    align-items: center;
+    padding: 11px 14px 12px;
+    border-radius: 14px;
+  }
+  .pledge-icon { width: 34px; height: 34px; grid-row: 1; }
+  .pledge-icon svg { width: 18px; height: 18px; }
+  .pledge h3 { grid-column: 2; grid-row: 1; margin: 0; font-size: 15px; line-height: 1.15; }
+  .pledge p { grid-column: 1 / -1; margin: 6px 0 0; font-size: 12.5px; line-height: 1.4; }
+  .pledge-link { grid-column: 1 / -1; justify-self: center; margin-top: 10px; height: 34px; padding: 0 16px; font-size: 12.5px; }
 }
 
 /* ---------- Titres : Plus Jakarta Sans, partie légère puis partie grasse ---------- */
