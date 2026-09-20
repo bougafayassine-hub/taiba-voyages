@@ -401,7 +401,7 @@ h1 .line-gold {
   align-items: baseline;
   column-gap: 8px;
 }
-.stat .stat-text { grid-column: 1 / -1; }
+.stat .stat-text { grid-column: 1 / -1; align-self: start; }
 .stat .counter {
   font-size: 34px;
   line-height: 1;
@@ -564,7 +564,7 @@ h1 .line-gold {
   .stat-figure { align-items: baseline; }
   .counter-prefix { font-size: 15px; }
   .stat-title { margin-top: 0; font-size: 14.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .stat .stat-text { grid-column: 1 / -1; }
+  .stat .stat-text { grid-column: 1 / -1; align-self: start; }
   .stat-text { margin-top: 4px; font-size: 12.5px; line-height: 1.45; }
   .stats-dots {
     margin-top: 12px;
@@ -1895,8 +1895,19 @@ html.js .pledge.is-highlight,
 .v-mix .stat:last-child { padding-inline-end: 0; }
 .v-mix .stats-bar { grid-template-columns: repeat(4, minmax(0, 1fr)); justify-items: stretch; }
 .v-mix .stat .counter { color: var(--green); font-size: 38px; }
+/* Première ligne à hauteur fixe : chiffre et titre sur la même base, texte au même niveau sur les quatre cartes */
+.v-mix .stat { grid-template-rows: 38px auto; }
 .v-mix .stat-title { color: var(--green); font-size: 13.5px; }
-.counter .ord { font-size: .5em; vertical-align: .55em; letter-spacing: 0; font-weight: 700; }
+.counter .ord {
+  font-size: .38em;
+  line-height: 0;
+  vertical-align: baseline;
+  position: relative;
+  top: -.85em;
+  margin-inline-start: .06em;
+  letter-spacing: 0;
+  font-weight: 700;
+}
 .v-mix + .agency { padding-top: 40px; }
 
 @media (max-width: 900px) {
