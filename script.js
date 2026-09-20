@@ -537,16 +537,16 @@ const AVATARS = ['#0c5a45', '#8fb8a8', '#064b39', '#b9895a', '#1b4f43', '#c9a24a
   if (!section) return;
   const lang = section.dataset.lang === 'ar' ? 'ar' : 'fr';
   const L = {
-    fr: { direct: 'Vol direct', indirect: 'Vol indirect', cheaper: 'moins cher', days: 'jours', avg: 'Prix moyen', per: 'par personne', dep: 'Départ', ret: 'Retour', show: 'Voir les dates de départ', hide: 'Masquer les dates', prev: 'Mois précédent', next: 'Mois suivant' },
-    ar: { direct: 'رحلة مباشرة', indirect: 'رحلة غير مباشرة', cheaper: 'أرخص', days: 'يومًا', avg: 'متوسط السعر', per: 'للشخص الواحد', dep: 'المغادرة', ret: 'العودة', show: 'عرض تواريخ المغادرة', hide: 'إخفاء التواريخ', prev: 'الشهر السابق', next: 'الشهر التالي' },
+    fr: { direct: 'Vol direct', indirect: 'Vol indirect', cheaper: 'moins cher', duration: 'Durée :', days: 'jours', avg: 'Prix moyen', per: 'par personne', dep: 'Départ', ret: 'Retour', show: 'Voir les dates de départ', hide: 'Masquer les dates', prev: 'Mois précédent', next: 'Mois suivant' },
+    ar: { direct: 'رحلة مباشرة', indirect: 'رحلة غير مباشرة', cheaper: 'أرخص', duration: 'المدة:', days: 'يومًا', avg: 'متوسط السعر', per: 'للشخص الواحد', dep: 'المغادرة', ret: 'العودة', show: 'عرض تواريخ المغادرة', hide: 'إخفاء التواريخ', prev: 'الشهر السابق', next: 'الشهر التالي' },
   }[lang];
   const CUR = lang === 'ar' ? 'درهم' : 'DH';
   // Provisoire : 4 départs par mois d'octobre 2026 à février 2027, à remplacer par les vraies dates.
   const MONTHS = [[2026, 9], [2026, 10], [2026, 11], [2027, 0], [2027, 1]];
   const DAYS = [3, 10, 17, 24];
   const FLIGHTS = {
-    direct: { range: '10–15', duration: 12, extra: 1800 },
-    indirect: { range: '11–15', duration: 13, extra: 0 },
+    direct: { range: { fr: '10 ou 15', ar: '10 أو 15' }, duration: 12, extra: 1800 },
+    indirect: { range: { fr: '11 ou 15', ar: '11 أو 15' }, duration: 13, extra: 0 },
   };
   const loc = lang === 'ar' ? 'ar-MA-u-nu-latn' : 'fr-FR';
   const fmtDay = new Intl.DateTimeFormat(loc, { day: '2-digit', month: 'short' });
@@ -585,7 +585,7 @@ const AVATARS = ['#0c5a45', '#8fb8a8', '#064b39', '#b9895a', '#1b4f43', '#c9a24a
             <button type="button" role="tab" data-type="indirect" aria-selected="${state.type === 'indirect'}">${L.indirect}<em>${L.cheaper}</em></button>
           </div>
           <div class="flight-meta">
-            <span><b dir="ltr">${f.range}</b> ${L.days}</span>
+            <span>${L.duration} <b>${f.range[lang]}</b> ${L.days}</span>
             <span>${L.avg} <b><span class="num" dir="ltr">${fmtNum(base + f.extra)}</span> ${CUR}</b> <small>${L.per}</small></span>
           </div>
           <div class="flight-month-nav">

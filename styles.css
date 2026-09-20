@@ -2167,8 +2167,7 @@ html[dir="rtl"] .ghost-number { top: 0; }
 }
 .flight-tabs button em { font-style: normal; font-size: 9.5px; font-weight: 700; padding: 2px 5px; border-radius: 999px; color: #2a2107; background: var(--gold); }
 .flight-tabs button[aria-selected="true"] { background: var(--green); color: #fff; }
-.flight-meta { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; font-size: 12.5px; color: #4d5552; }
-@media (max-width: 400px) { .flight-meta { flex-wrap: wrap; } }
+.flight-meta { display: grid; gap: 4px; font-size: 12.5px; color: #4d5552; }
 .flight-meta > span:first-child { white-space: nowrap; }
 .flight-meta b { color: var(--green); font-weight: 700; }
 .flight-meta small { font-size: 11px; color: #6b7673; }
