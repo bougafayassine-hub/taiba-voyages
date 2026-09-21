@@ -1319,8 +1319,8 @@ html[dir="rtl"] .agency-actions .contact-cta { padding: 0 18px 0 22px; }
 .founder-quote footer span { font-size: 13px; color: #6b7673; }
 html[dir="rtl"] .founder-quote { border-radius: 16px 0 0 16px; background: linear-gradient(270deg, rgba(224,179,62,.10), transparent 80%); }
 html[dir="rtl"] .founder-quote p { font-family: "Tajawal", sans-serif; font-size: 24px; line-height: 1.6; }
-html[dir="rtl"] .founder-quote p::before { content: "» "; }
-html[dir="rtl"] .founder-quote p::after { content: " «"; }
+html[dir="rtl"] .founder-quote p::before { content: "« "; }
+html[dir="rtl"] .founder-quote p::after { content: " »"; }
 
 /* ---------- Nos engagements ---------- */
 .pledges {
@@ -2199,8 +2199,9 @@ html[dir="rtl"] .ghost-number { top: 0; }
 }
 .flight-tabs button em { font-style: normal; font-size: 9.5px; font-weight: 700; padding: 2px 5px; border-radius: 999px; color: #2a2107; background: var(--gold); }
 .flight-tabs button[aria-selected="true"] { background: var(--green); color: #fff; }
-.flight-meta { display: grid; gap: 4px; font-size: 12.5px; color: #4d5552; }
+.flight-meta { display: grid; gap: 4px; justify-items: center; text-align: center; font-size: 12.5px; color: #4d5552; }
 .flight-meta > span:first-child { white-space: nowrap; }
+@media (max-width: 900px) { .flight-meta { font-size: 14px; gap: 5px; } .flight-meta b { font-size: 15px; } }
 .flight-meta b { color: var(--green); font-weight: 700; }
 .flight-meta small { font-size: 11px; color: #6b7673; }
 .flight-month-nav { display: grid; grid-template-columns: 32px 1fr 32px; align-items: center; gap: 6px; }
