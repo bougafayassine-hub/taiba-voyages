@@ -2186,8 +2186,6 @@ html[dir="rtl"] .ghost-number { top: 0; }
 }
 .flights-toggle:hover { background: #f2dfb6; }
 .flights-cal { flex: 0 0 auto; }
-.flights-toggle svg { transition: transform .25s ease; }
-.pack-flights.is-open .flights-toggle svg { transform: rotate(180deg); }
 .flights-body { display: grid; gap: 10px; }
 .flights-body[hidden] { display: none; }
 .flight-tabs { display: grid; grid-template-columns: 1fr 1fr; padding: 3px; border-radius: 999px; background: #f1ece0; }
