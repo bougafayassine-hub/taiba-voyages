@@ -303,8 +303,11 @@ document.querySelectorAll('.pay-card').forEach((card) => {
   const update = () => {
     const price = Number(select.value) || 0;
     total.textContent = fmt(price);
-    each.textContent = fmt(Math.round(price / 3));
-    steps.forEach((el) => { el.textContent = fmt(Math.round(price / 3)); });
+    // 50 % à la réservation, puis 25 % et 25 %.
+    const first = Math.round(price * 0.5);
+    const rest = Math.round(price * 0.25);
+    each.textContent = fmt(first);
+    [first, rest, rest].forEach((v, i) => { if (steps[i]) steps[i].textContent = fmt(v); });
   };
   select.addEventListener('change', update);
   update();

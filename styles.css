@@ -2281,3 +2281,18 @@ html[dir="rtl"] .ghost-cta[href^="tel:"] svg,
 html[dir="rtl"] .location-info li:has(> a[href^="tel:"]) > svg {
   transform: scaleX(-1);
 }
+
+/* Pourcentage des versements : pastille, toujours lue de gauche à droite */
+.pay-step .pct {
+  display: inline-block;
+  margin-inline-start: 4px;
+  padding: 1px 6px;
+  border-radius: 999px;
+  font-size: 10.5px;
+  font-weight: 800;
+  color: #2a2107;
+  background: var(--gold);
+  direction: ltr;
+  unicode-bidi: isolate;
+  vertical-align: 1px;
+}
