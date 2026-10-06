@@ -2342,3 +2342,5 @@ html[dir="rtl"] body *::after {
 .mobile-social .soc svg { width: 19px; height: 19px; }
 html[dir="rtl"] .mobile-row { flex-direction: row-reverse; }
 html[dir="rtl"] .mobile-social { padding-inline-end: 0; padding-left: 8px; }
+/* AR : le numéro reste écrit de gauche à droite, mais calé à droite comme les autres champs. */
+html[dir="rtl"] .contact-form input[type="tel"] { text-align: right; }
