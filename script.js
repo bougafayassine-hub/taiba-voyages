@@ -392,17 +392,24 @@ document.querySelectorAll('.pay-card').forEach((card) => {
   caret.setAttribute('aria-hidden', 'true');
   el.setAttribute('aria-label', text);
   el.appendChild(caret);
+  // Un seul nœud de texte, mis à jour à chaque étape : Safari ne lie pas les lettres
+  // arabes réparties dans plusieurs nœuds. En arabe, on écrit mot par mot pour que
+  // chaque mot apparaisse déjà correctement formé.
+  const out = document.createTextNode('');
+  caret.before(out);
+  const arabic = /[\u0600-\u06FF]/.test(text);
+  const units = arabic ? text.split(/(\s+)/).filter(Boolean) : [...text];
   let started = false;
   const type = () => {
     if (started) return;
     started = true;
     let i = 0;
     const step = () => {
-      if (i >= text.length) { setTimeout(() => caret.remove(), 2500); return; }
-      caret.before(document.createTextNode(text[i]));
-      const ch = text[i];
+      if (i >= units.length) { setTimeout(() => caret.remove(), 2500); return; }
+      const unit = units[i];
+      out.data += unit;
       i += 1;
-      const pause = /[.,،؛!?]/.test(ch) ? 260 : 34;
+      const pause = /[.,،؛!?]$/.test(unit.trim()) ? 320 : (arabic ? (unit.trim() ? 170 : 0) : 34);
       setTimeout(step, pause);
     };
     setTimeout(step, 350);

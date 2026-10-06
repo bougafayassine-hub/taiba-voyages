@@ -2296,3 +2296,11 @@ html[dir="rtl"] .location-info li:has(> a[href^="tel:"]) > svg {
   unicode-bidi: isolate;
   vertical-align: 1px;
 }
+
+/* Arabe : aucun espacement de lettres. Safari l'applique à l'arabe et casse la liaison
+   entre les lettres (Chrome l'ignore, d'où un rendu différent selon le téléphone). */
+html[dir="rtl"] body *,
+html[dir="rtl"] body *::before,
+html[dir="rtl"] body *::after {
+  letter-spacing: 0 !important;
+}
