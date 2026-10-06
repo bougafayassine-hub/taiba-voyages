@@ -2345,12 +2345,12 @@ html[dir="rtl"] .mobile-social { padding-inline-end: 0; padding-left: 8px; }
 /* AR : le numéro reste écrit de gauche à droite, mais calé à droite comme les autres champs. */
 html[dir="rtl"] .contact-form input[type="tel"] { text-align: right; }
 
-/* Réseaux sociaux flottants (téléphone et tablette) : colonne compacte à gauche, suit le scroll. */
+/* Réseaux sociaux flottants (téléphone et tablette) : colonne compacte sur le bord libre, suit le scroll. */
 .social-rail { display: none; }
 @media (max-width: 1040px) {
   .social-rail {
     position: fixed;
-    left: 5px;
+    right: 5px;
     top: calc(var(--nav-h) + 22px);
     z-index: 25;
     display: flex;
@@ -2373,5 +2373,8 @@ html[dir="rtl"] .contact-form input[type="tel"] { text-align: right; }
   .social-rail .soc:hover { transform: none; }
   .social-rail .soc:active { transform: scale(.92); }
 }
-@keyframes rail-in { from { opacity: 0; transform: translateX(-14px); } to { opacity: 1; transform: none; } }
+@keyframes rail-in { from { opacity: 0; transform: translateX(14px); } to { opacity: 1; transform: none; } }
+@keyframes rail-in-rtl { from { opacity: 0; transform: translateX(-14px); } to { opacity: 1; transform: none; } }
+/* FR : à droite (le texte est aligné à gauche). AR : à gauche (le texte est aligné à droite). */
+html[dir="rtl"] .social-rail { right: auto; left: 5px; animation-name: rail-in-rtl; }
 @media (prefers-reduced-motion: reduce) { .social-rail { animation: none; } }
