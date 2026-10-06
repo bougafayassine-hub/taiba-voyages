@@ -493,7 +493,7 @@ h1 .line-gold {
     box-shadow: 0 18px 24px rgba(0,0,0,.08);
   }
   .mobile-panel:not([hidden]) { display: grid; gap: 6px; }
-  .mobile-panel a:not(.soc) { padding: 14px 12px; border-radius: 10px; font-weight: 600; }
+  .mobile-panel a { padding: 14px 12px; border-radius: 10px; font-weight: 600; }
 
   .hero {
     min-height: 760px;
@@ -615,7 +615,7 @@ html[dir="rtl"] .stats-bar {
   direction: ltr;
 }
 html[dir="rtl"] .desktop-nav { direction: rtl; }
-html[dir="rtl"] .mobile-panel a:not(.soc) { text-align: right; }
+html[dir="rtl"] .mobile-panel a { text-align: right; }
 html[dir="rtl"] .stats-bar { direction: rtl; }
 html[dir="rtl"] .stat .counter { text-align: right; }
 html[dir="rtl"] .google-count { direction: rtl; unicode-bidi: isolate; }
@@ -2335,13 +2335,6 @@ html[dir="rtl"] body *::after {
 @media (max-width: 1040px) {
   .site-header .nav-shell > .nav-social { display: none; }
 }
-.mobile-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
-.mobile-row > a { flex: 1 1 auto; }
-.mobile-social { padding-inline-end: 8px; }
-.mobile-social .soc { width: 34px; height: 34px; flex-basis: 34px; }
-.mobile-social .soc svg { width: 19px; height: 19px; }
-html[dir="rtl"] .mobile-row { flex-direction: row-reverse; }
-html[dir="rtl"] .mobile-social { padding-inline-end: 0; padding-left: 8px; }
 /* AR : le numéro reste écrit de gauche à droite, mais calé à droite comme les autres champs. */
 html[dir="rtl"] .contact-form input[type="tel"] { text-align: right; }
 
