@@ -620,3 +620,15 @@ const AVATARS = ['#0c5a45', '#8fb8a8', '#064b39', '#b9895a', '#1b4f43', '#c9a24a
     render();
   });
 })();
+
+// Réseaux sociaux flottants : presque transparents pendant le scroll, pleins à l'arrêt.
+(() => {
+  const rail = document.querySelector('.social-rail');
+  if (!rail) return;
+  let timer;
+  window.addEventListener('scroll', () => {
+    rail.classList.add('is-scrolling');
+    clearTimeout(timer);
+    timer = setTimeout(() => rail.classList.remove('is-scrolling'), 220);
+  }, { passive: true });
+})();
