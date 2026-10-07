@@ -2408,7 +2408,7 @@ html[dir="rtl"] .social-rail { right: auto; left: 5px; animation-name: rail-in-r
 .iata-badge img { display: block; height: 58px; width: auto; }
 @media (max-width: 900px) {
   .pledges-head .pledges-copy { grid-template-columns: minmax(0, 1fr); }
-  .pledges-copy > .iata-badge { grid-column: 1; grid-row: auto; justify-self: start; margin-top: 16px; }
+  .pledges-copy > .iata-badge { grid-column: 1; grid-row: auto; justify-self: center; margin-top: 18px; }
   .iata-badge { padding: 9px 14px; border-radius: 14px; }
   .iata-badge img { height: 42px; }
 }
