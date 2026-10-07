@@ -2326,13 +2326,21 @@ html[dir="rtl"] body *::after {
 .soc-fb svg { width: 19px; height: 19px; }
 .soc-yt { background: #FF0000; border-radius: 9px; }
 .soc-tt { background: #000; }
+.soc-ta { background: #34E0A1; color: #000; }
+/* Navbar (ordinateur) : un peu plus petits que la taille de base. */
+.site-header .nav-shell > .nav-social { gap: 6px; }
+.site-header .nav-shell > .nav-social .soc { width: 27px; height: 27px; flex-basis: 27px; }
+.site-header .nav-shell > .nav-social .soc svg { width: 16px; height: 16px; }
+.site-header .nav-shell > .nav-social .soc-fb svg { width: 17px; height: 17px; }
+.site-header .nav-shell > .nav-social .soc-yt { border-radius: 8px; }
 @media (max-width: 1180px) {
   .site-header .nav-shell > .nav-social { gap: 5px; }
-  .site-header .nav-shell > .nav-social .soc { width: 26px; height: 26px; flex-basis: 26px; }
-  .site-header .nav-shell > .nav-social .soc svg { width: 15px; height: 15px; }
-  .site-header .nav-shell > .nav-social .soc-yt { border-radius: 8px; }
+  .site-header .nav-shell > .nav-social .soc { width: 24px; height: 24px; flex-basis: 24px; }
+  .site-header .nav-shell > .nav-social .soc svg,
+  .site-header .nav-shell > .nav-social .soc-fb svg { width: 14px; height: 14px; }
+  .site-header .nav-shell > .nav-social .soc-yt { border-radius: 7px; }
 }
-@media (max-width: 1040px) {
+@media (max-width: 1060px) {
   .site-header .nav-shell > .nav-social { display: none; }
 }
 /* AR : le numéro reste écrit de gauche à droite, mais calé à droite comme les autres champs. */
@@ -2340,7 +2348,7 @@ html[dir="rtl"] .contact-form input[type="tel"] { text-align: right; }
 
 /* Réseaux sociaux flottants (téléphone et tablette) : colonne compacte sur le bord libre, suit le scroll. */
 .social-rail { display: none; }
-@media (max-width: 1040px) {
+@media (max-width: 1060px) {
   .social-rail {
     position: fixed;
     right: 5px;
@@ -2371,3 +2379,42 @@ html[dir="rtl"] .contact-form input[type="tel"] { text-align: right; }
 /* FR : à droite (le texte est aligné à gauche). AR : à gauche (le texte est aligné à droite). */
 html[dir="rtl"] .social-rail { right: auto; left: 5px; animation-name: rail-in-rtl; }
 @media (prefers-reduced-motion: reduce) { .social-rail { animation: none; } }
+
+/* ---------- Badge IATA, aligné sur le titre « Nos engagements » ---------- */
+.pledges-head .pledges-copy {
+  flex: 1 1 auto;
+  max-width: none;
+  display: grid;
+  grid-template-columns: minmax(0, 640px) auto;
+  justify-content: space-between;
+  column-gap: 32px;
+}
+.pledges-copy > * { grid-column: 1; }
+.pledges-copy > .iata-badge {
+  grid-column: 2;
+  grid-row: 2;
+  align-self: center;
+  justify-self: end;
+}
+.iata-badge {
+  margin: 0;
+  padding: 12px 18px;
+  background: #fff;
+  border: 1px solid rgba(224,179,62,.45);
+  border-radius: 16px;
+  box-shadow: 0 10px 26px rgba(7,40,32,.08);
+  line-height: 0;
+}
+.iata-badge img { display: block; height: 58px; width: auto; }
+@media (max-width: 900px) {
+  .pledges-head .pledges-copy { grid-template-columns: minmax(0, 1fr); }
+  .pledges-copy > .iata-badge { grid-column: 1; grid-row: auto; justify-self: start; margin-top: 16px; }
+  .iata-badge { padding: 9px 14px; border-radius: 14px; }
+  .iata-badge img { height: 42px; }
+}
+/* Avis : « Suivez-nous » sur une ligne ; sur téléphone, au-dessus des 5 icônes. */
+.reviews-social .footer-follow { white-space: nowrap; }
+@media (max-width: 560px) {
+  .reviews-social { flex-wrap: wrap; row-gap: 10px; }
+  .reviews-social .footer-follow { flex-basis: 100%; }
+}
