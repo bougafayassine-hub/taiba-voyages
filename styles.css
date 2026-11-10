@@ -2340,7 +2340,7 @@ html[dir="rtl"] body *::after {
   .site-header .nav-shell > .nav-social .soc-fb svg { width: 14px; height: 14px; }
   .site-header .nav-shell > .nav-social .soc-yt { border-radius: 7px; }
 }
-@media (max-width: 1060px) {
+@media (max-width: 1100px) {
   .site-header .nav-shell > .nav-social { display: none; }
 }
 /* AR : le numéro reste écrit de gauche à droite, mais calé à droite comme les autres champs. */
@@ -2348,7 +2348,7 @@ html[dir="rtl"] .contact-form input[type="tel"] { text-align: right; }
 
 /* Réseaux sociaux flottants (téléphone et tablette) : colonne compacte sur le bord libre, suit le scroll. */
 .social-rail { display: none; }
-@media (max-width: 1060px) {
+@media (max-width: 1100px) {
   .social-rail {
     position: fixed;
     right: 5px;
@@ -2417,4 +2417,9 @@ html[dir="rtl"] .social-rail { right: auto; left: 5px; animation-name: rail-in-r
 @media (max-width: 560px) {
   .reviews-social { flex-wrap: wrap; row-gap: 10px; }
   .reviews-social .footer-follow { flex-basis: 100%; }
+}
+/* Petits écrans d'ordinateur (901–980px) : menu un peu plus serré pour tenir sur une ligne. */
+@media (min-width: 901px) and (max-width: 980px) {
+  .desktop-nav { gap: 16px; }
+  .desktop-nav a { font-size: 13px; }
 }
